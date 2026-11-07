@@ -61,6 +61,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ip-ph .eye.l{left:30%}.ip-ph .eye.r{right:30%}
 .ip-ph p{font-size:clamp(14px,1.3vw,18px);line-height:1.4}
 .ip-ph small{font-family:var(--body);font-size:12px;color:var(--muted)}
+.pup{transform-box:fill-box;transform-origin:50% 100%;animation:wag 2.6s ease-in-out infinite;filter:drop-shadow(4px 6px 0 rgba(26,16,20,.18))}
+@keyframes wag{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@media (prefers-reduced-motion:reduce){.pup{animation:none}}
 .lang{position:fixed;top:14px;right:14px;z-index:40;font:600 14px/1 var(--cn);padding:8px 14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--yellow);color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
 .lang:hover{background:#fff}
 html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
@@ -184,6 +187,7 @@ html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
       <path fill="#d6f0ff" d="M-40 -40 L 520 -40 C 470 60 300 40 200 120 S 40 160 -40 230Z"/>
       <ellipse fill="#ffd84d" cx="1080" cy="380" rx="120" ry="112"/>
     </g>
+    <image class="pup" href="assets/dingding.webp" x="989" y="238" width="182" height="270"/>
     <g fill="#0a9ae6" opacity=".85">
       <circle cx="980" cy="250" r="7"/><circle cx="1010" cy="226" r="4"/><circle cx="380" cy="470" r="6"/><circle cx="350" cy="500" r="3"/>
       <circle cx="1240" cy="420" r="5"/><circle cx="150" cy="420" r="8"/><circle cx="700" cy="140" r="5"/>
