@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ziyuan 个人主页</title>
+<meta name="description" content="Ziyuan 的作品集与在线简历">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fafaf9; --surface:#ffffff; --text:#1c1917; --muted:#78716c; --line:#e7e5e4;
+  --accent:#2563eb; --accent-soft:#dbeafe;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0c0a09; --surface:#1c1917; --text:#f5f5f4; --muted:#a8a29e; --line:#292524;
+    --accent:#60a5fa; --accent-soft:#1e3a5f;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0c0a09; --surface:#1c1917; --text:#f5f5f4; --muted:#a8a29e; --line:#292524;
+  --accent:#60a5fa; --accent-soft:#1e3a5f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans SC",system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px}
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:700;font-size:18px}
+.links{display:flex;gap:20px;align-items:center;font-size:14px;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px}
+section{padding:72px 0;border-bottom:1px solid var(--line)}
+.hero{padding:96px 0 80px;display:flex;gap:40px;align-items:center}
+.avatar{flex:none;width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#a855f7);display:grid;place-items:center;color:#fff;font-size:52px;font-weight:700}
+.hero h1{font-size:clamp(32px,6vw,48px);line-height:1.2;margin-bottom:12px}
+.hero p{color:var(--muted);font-size:17px;max-width:560px}
+.btns{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+.btn{padding:10px 20px;border-radius:10px;font-size:15px;font-weight:500;border:1px solid var(--line)}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn:hover{opacity:.85}
+h2{font-size:28px;margin-bottom:32px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s}
+.card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
+.thumb{aspect-ratio:16/10;display:grid;place-items:center;color:#fff;font-size:15px;font-weight:600}
+.card-body{padding:18px}
+.card h3{font-size:17px;margin-bottom:6px}
+.card p{color:var(--muted);font-size:14px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.tag{font-size:12px;padding:2px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
+.timeline{display:grid;gap:28px}
+.item{display:grid;grid-template-columns:160px 1fr;gap:20px}
+.item .when{color:var(--muted);font-size:14px;padding-top:2px}
+.item h3{font-size:17px}
+.item .org{color:var(--accent);font-size:14px;margin-bottom:6px}
+.item ul{padding-left:18px;color:var(--muted);font-size:15px}
+.sub{font-size:18px;margin:44px 0 20px}
+.skills{display:flex;flex-wrap:wrap;gap:10px}
+.skills span{padding:6px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:var(--surface)}
+.contact{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.contact a{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+.contact a:hover{border-color:var(--accent)}
+.contact small{display:block;color:var(--muted);font-size:13px}
+footer{padding:32px 0;text-align:center;color:var(--muted);font-size:13px}
+@media (max-width:640px){
+  .links a{display:none}
+  .hero{flex-direction:column;align-items:flex-start;padding:56px 0}
+  .avatar{width:100px;height:100px;font-size:38px}
+  .item{grid-template-columns:1fr;gap:4px}
+  section{padding:56px 0}
+}
+@media print{header,.btns,.theme{display:none}section{padding:24px 0}}
+</style>
+</head>
+<body>
+<header><div class="wrap"><nav>
+  <a class="logo" href="#">Ziyuan</a>
+  <div class="links">
+    <a href="#work">作品集</a><a href="#resume">简历</a><a href="#contact">联系</a>
+    <button class="theme" id="theme" aria-label="切换深浅色">◐</button>
+  </div>
+</nav></div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="avatar">Z</div>
+    <div>
+      <h1>你好，我是 Ziyuan</h1>
+      <p>【占位】一句话介绍自己：比如“产品设计师 / 开发者，专注于做简单好用的数字产品”。这里写两三句你的方向和兴趣。</p>
+      <div class="btns">
+        <a class="btn primary" href="#work">看看作品</a>
+        <a class="btn" href="#resume">在线简历</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2>作品集</h2>
+    <div class="grid">
+      <a class="card" href="#"><div class="thumb" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">作品截图</div>
+        <div class="card-body"><h3>项目名称一</h3><p>【占位】一两句话说明这个项目做了什么、你负责什么、结果如何。</p>
+        <div class="tags"><span class="tag">设计</span><span class="tag">前端</span></div></div></a>
+      <a class="card" href="#"><div class="thumb" style="background:linear-gradient(135deg,#059669,#0891b2)">作品截图</div>
+        <div class="card-body"><h3>项目名称二</h3><p>【占位】一两句话说明这个项目做了什么、你负责什么、结果如何。</p>
+        <div class="tags"><span class="tag">产品</span></div></div></a>
+      <a class="card" href="#"><div class="thumb" style="background:linear-gradient(135deg,#ea580c,#db2777)">作品截图</div>
+        <div class="card-body"><h3>项目名称三</h3><p>【占位】一两句话说明这个项目做了什么、你负责什么、结果如何。</p>
+        <div class="tags"><span class="tag">视频</span><span class="tag">品牌</span></div></div></a>
+    </div>
+  </section>
+
+  <section id="resume">
+    <h2>简历</h2>
+    <h3 class="sub" style="margin-top:0">工作经历</h3>
+    <div class="timeline">
+      <div class="item"><div class="when">2024 — 至今</div><div>
+        <h3>职位名称</h3><div class="org">公司名称</div>
+        <ul><li>【占位】主要职责或成果一</li><li>【占位】主要职责或成果二</li></ul></div></div>
+      <div class="item"><div class="when">2022 — 2024</div><div>
+        <h3>职位名称</h3><div class="org">公司名称</div>
+        <ul><li>【占位】主要职责或成果一</li></ul></div></div>
+    </div>
+    <h3 class="sub">教育背景</h3>
+    <div class="timeline">
+      <div class="item"><div class="when">2018 — 2022</div><div>
+        <h3>学校名称</h3><div class="org">专业 · 学位</div></div></div>
+    </div>
+    <h3 class="sub">技能</h3>
+    <div class="skills"><span>技能一</span><span>技能二</span><span>技能三</span><span>技能四</span><span>技能五</span></div>
+    <div class="btns" style="margin-top:32px"><a class="btn" href="#" onclick="window.print();return false">打印 / 存为 PDF</a></div>
+  </section>
+
+  <section id="contact" style="border-bottom:none">
+    <h2>联系我</h2>
+    <div class="contact">
+      <a href="mailto:you@example.com"><small>邮箱</small>you@example.com</a>
+      <a href="https://github.com/Ziyuan3123" target="_blank" rel="noopener"><small>GitHub</small>Ziyuan3123</a>
+      <a href="#"><small>微信 / 其他</small>【占位】</a>
+    </div>
+  </section>
+</main>
+<footer>© <span id="y"></span> Ziyuan</footer>
+<script>
+document.getElementById('y').textContent=new Date().getFullYear();
+const r=document.documentElement,b=document.getElementById('theme');
+try{const t=localStorage.getItem('theme');if(t)r.dataset.theme=t}catch(e){}
+b.onclick=()=>{const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+r.dataset.theme=dark?'light':'dark';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}};
+</script>
+</body>
+</html>
