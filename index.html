@@ -3,153 +3,405 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ziyuan 个人主页</title>
-<meta name="description" content="Ziyuan 的作品集与在线简历">
+<title>王子源 Ziyuan · 个人主页</title>
+<meta name="description" content="王子源 Ziyuan · 蒙纳士数字商业硕士在读，方向商业分析。在线简历和 13 个项目作品：数据审计、财务分析、金融科技、AI 内容创作。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ziyuan3123.github.io/">
+<meta property="og:title" content="王子源 Ziyuan · 个人主页">
+<meta property="og:description" content="王子源 Ziyuan · 蒙纳士数字商业硕士在读，方向商业分析。在线简历和 13 个项目作品：数据审计、财务分析、金融科技、AI 内容创作。">
+<meta property="og:image" content="https://ziyuan3123.github.io/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ziyuan3123.github.io/assets/og.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Gochi+Hand&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#fafaf9; --surface:#ffffff; --text:#1c1917; --muted:#78716c; --line:#e7e5e4;
-  --accent:#2563eb; --accent-soft:#dbeafe;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    --bg:#0c0a09; --surface:#1c1917; --text:#f5f5f4; --muted:#a8a29e; --line:#292524;
-    --accent:#60a5fa; --accent-soft:#1e3a5f;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#0c0a09; --surface:#1c1917; --text:#f5f5f4; --muted:#a8a29e; --line:#292524;
-  --accent:#60a5fa; --accent-soft:#1e3a5f;
+  --cream:#f4faff; --pink:#0a9ae6; --pink-2:#5cc8f5; --pink-soft:#d6f0ff; --ink:#1a1014;
+  --yellow:#ffd84d; --blue:#3b82f6; --muted:#6b5560; --paper:#ffffff;
+  --hand:"Gochi Hand","ZCOOL KuaiLe",cursive; --cn:"ZCOOL KuaiLe","Noto Sans SC",sans-serif;
+  --body:"Noto Sans SC",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans SC",system-ui,sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
-a{color:inherit;text-decoration:none}
-.wrap{max-width:960px;margin:0 auto;padding:0 16px}
-header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-nav{display:flex;align-items:center;justify-content:space-between;height:60px}
-.logo{font-weight:700;font-size:18px}
-.links{display:flex;gap:20px;align-items:center;font-size:14px;color:var(--muted)}
-.links a:hover{color:var(--text)}
-.theme{background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;width:34px;height:34px;cursor:pointer;font-size:15px}
-section{padding:72px 0;border-bottom:1px solid var(--line)}
-.hero{padding:96px 0 80px;display:flex;gap:40px;align-items:center}
-.avatar{flex:none;width:140px;height:140px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#a855f7);display:grid;place-items:center;color:#fff;font-size:52px;font-weight:700}
-.hero h1{font-size:clamp(32px,6vw,48px);line-height:1.2;margin-bottom:12px}
-.hero p{color:var(--muted);font-size:17px;max-width:560px}
-.btns{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
-.btn{padding:10px 20px;border-radius:10px;font-size:15px;font-weight:500;border:1px solid var(--line)}
-.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
-.btn:hover{opacity:.85}
-h2{font-size:28px;margin-bottom:32px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:transform .2s,box-shadow .2s}
-.card:hover{transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.08)}
-.thumb{aspect-ratio:16/10;display:grid;place-items:center;color:#fff;font-size:15px;font-weight:600}
-.card-body{padding:18px}
-.card h3{font-size:17px;margin-bottom:6px}
-.card p{color:var(--muted);font-size:14px}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
-.tag{font-size:12px;padding:2px 10px;border-radius:99px;background:var(--accent-soft);color:var(--accent)}
-.timeline{display:grid;gap:28px}
-.item{display:grid;grid-template-columns:160px 1fr;gap:20px}
-.item .when{color:var(--muted);font-size:14px;padding-top:2px}
-.item h3{font-size:17px}
-.item .org{color:var(--accent);font-size:14px;margin-bottom:6px}
-.item ul{padding-left:18px;color:var(--muted);font-size:15px}
-.sub{font-size:18px;margin:44px 0 20px}
-.skills{display:flex;flex-wrap:wrap;gap:10px}
-.skills span{padding:6px 14px;border:1px solid var(--line);border-radius:10px;font-size:14px;background:var(--surface)}
-.contact{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
-.contact a{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
-.contact a:hover{border-color:var(--accent)}
-.contact small{display:block;color:var(--muted);font-size:13px}
-footer{padding:32px 0;text-align:center;color:var(--muted);font-size:13px}
-@media (max-width:640px){
-  .links a{display:none}
-  .hero{flex-direction:column;align-items:flex-start;padding:56px 0}
-  .avatar{width:100px;height:100px;font-size:38px}
-  .item{grid-template-columns:1fr;gap:4px}
-  section{padding:56px 0}
+html,body{height:100%}
+body{background:var(--cream);color:var(--ink);font-family:var(--body);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- 首页舞台 ---------- */
+.stage{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;isolation:isolate}
+.paint{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.title{position:absolute;left:5vw;top:6vh;font-family:"Rubik Doodle Shadow",var(--hand);font-size:clamp(40px,7.4vw,110px);line-height:.95;color:var(--ink);transform:rotate(-6deg);transform-origin:left top;letter-spacing:.01em}
+.title small{display:block;font-family:var(--cn);font-size:clamp(16px,1.7vw,24px);letter-spacing:.1em;margin:14px 0 0 6px;color:var(--ink)}
+.title .moon{color:var(--pink)}
+.sign{position:absolute;left:4vw;bottom:4vh;font-family:var(--hand);font-size:clamp(18px,1.8vw,26px);transform:rotate(-4deg);color:var(--ink);background:var(--paper);padding:2px 12px;border:2.5px solid var(--ink);border-radius:10px;box-shadow:3px 3px 0 var(--ink)}
+
+/* 贴纸 */
+.sticker{position:absolute;display:grid;justify-items:center;gap:2px;width:var(--w,180px);transform:rotate(var(--r,0deg));transition:transform .25s cubic-bezier(.3,1.6,.5,1);
+  filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(4px 6px 0 rgba(26,16,20,.18));animation:bob 4s ease-in-out infinite;animation-delay:var(--d,0s)}
+.sticker:hover,.sticker:focus-visible{transform:rotate(calc(var(--r,0deg) * -1)) scale(1.1);outline:none;animation-play-state:paused}
+.sticker svg{width:100%;height:auto;overflow:visible}
+.sticker .lbl{font-family:var(--hand);font-size:clamp(22px,2.3vw,34px);line-height:1;color:var(--ink);margin-top:-6px}
+.sticker .lbl i{font-style:normal;font-family:var(--cn);font-size:.55em;margin-left:6px;color:var(--pink)}
+@keyframes bob{50%{translate:0 -6px}}
+.s-resume{--w:clamp(110px,12vw,180px);--r:8deg;left:6vw;top:37vh;--d:.2s}
+.s-skills{--w:clamp(140px,16vw,230px);--r:-6deg;right:6vw;top:12vh;--d:.8s}
+.s-works{--w:clamp(160px,18vw,260px);--r:-5deg;left:16vw;bottom:5vh;--d:.5s}
+.s-contact{--w:clamp(130px,14vw,200px);--r:7deg;right:8vw;bottom:11vh;--d:1.1s}
+
+/* 形象位：形象定稿后换成 oil-motion 输出的视频或图集 */
+.ip{position:absolute;left:50%;bottom:0;height:min(64vh,600px);translate:-50% 0;display:flex;align-items:flex-end;justify-content:center}
+.ip video,.ip img{height:100%;width:auto;display:block;transition:transform .2s ease-out;transform-origin:50% 100%}
+
+.ip-ph{height:100%;aspect-ratio:3/4.4;display:grid;place-items:center;align-content:center;gap:8px;border:3px dashed var(--ink);border-bottom:0;border-radius:48% 48% 0 0/34% 34% 0 0;background:rgba(255,255,255,.55);text-align:center;font-family:var(--cn);color:var(--ink)}
+.ip-ph .face{width:42%;aspect-ratio:1;border-radius:50%;border:3px solid var(--ink);background:var(--paper);position:relative;transition:transform .15s}
+.ip-ph .eye{position:absolute;top:44%;width:12%;aspect-ratio:1;border-radius:50%;background:var(--ink);transition:transform .1s}
+.ip-ph .eye.l{left:30%}.ip-ph .eye.r{right:30%}
+.ip-ph p{font-size:clamp(14px,1.3vw,18px);line-height:1.4}
+.ip-ph small{font-family:var(--body);font-size:12px;color:var(--muted)}
+.lang{position:fixed;top:14px;right:14px;z-index:40;font:600 14px/1 var(--cn);padding:8px 14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--yellow);color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+.lang:hover{background:#fff}
+html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
+.hint{position:absolute;left:50%;top:3vh;translate:-50% 0;font-family:var(--cn);font-size:14px;background:var(--ink);color:#fff;padding:4px 14px;border-radius:99px;white-space:nowrap}
+
+/* ---------- 弹出页面 ---------- */
+.sheet{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:16px;background:rgba(26,16,20,.45);opacity:0;pointer-events:none;transition:opacity .25s}
+.sheet.open{opacity:1;pointer-events:auto}
+.panel{position:relative;width:min(960px,100%);max-height:calc(100svh - 32px);overflow:auto;background:var(--paper);border:3px solid var(--ink);border-radius:22px;box-shadow:8px 8px 0 var(--pink);translate:0 30px;transition:translate .3s cubic-bezier(.3,1.4,.5,1)}
+.sheet.open .panel{translate:0 0}
+.panel-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 24px;background:var(--pink-soft);border-bottom:3px solid var(--ink)}
+.panel-head .k{font-family:var(--hand);font-size:14px;letter-spacing:.12em;text-transform:uppercase;color:var(--pink)}
+.panel-head h2{font-family:var(--cn);font-weight:400;font-size:clamp(24px,3vw,32px);line-height:1.2}
+.x{flex:none;width:42px;height:42px;border-radius:50%;background:var(--yellow);border:3px solid var(--ink);font-size:20px;font-weight:700;display:grid;place-items:center;box-shadow:2px 2px 0 var(--ink)}
+.x:hover{rotate:90deg;transition:rotate .2s}
+.panel-body{padding:28px 24px 36px}
+.h3{font-family:var(--cn);font-weight:400;font-size:20px;margin:28px 0 14px;display:inline-block;background:linear-gradient(transparent 60%,var(--yellow) 60%)}
+.h3:first-child{margin-top:0}
+.tl{display:grid;gap:18px}
+.tl-item{display:grid;grid-template-columns:140px 1fr;gap:16px;padding:16px;border:2.5px solid var(--ink);border-radius:14px;background:var(--cream)}
+.tl-item .when{font-family:var(--hand);font-size:18px;color:var(--pink)}
+.tl-item h4{font-size:17px}
+.tl-item .org{color:var(--muted);font-size:14px}
+.tl-item ul{padding-left:18px;margin-top:6px;font-size:15px}
+.btn{display:inline-block;margin-top:24px;padding:10px 20px;border:2.5px solid var(--ink);border-radius:12px;background:var(--yellow);font-weight:700;box-shadow:3px 3px 0 var(--ink);text-decoration:none}
+.btn:active{translate:2px 2px;box-shadow:1px 1px 0 var(--ink)}
+
+.intent{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:8px}
+.intent div{padding:12px 16px;border:2.5px dashed var(--ink);border-radius:14px;background:#fff8d6}
+.intent small{display:block;font-family:var(--hand);font-size:15px;color:var(--pink)}
+.intent b{font-size:16px}
+.tl-item .note{font-size:14px;color:var(--muted);margin-top:4px}
+.award{display:inline-block;margin-top:6px;font-size:13px;padding:1px 10px;border:2px solid var(--ink);border-radius:99px;background:var(--yellow)}
+
+/* 作品：叠放卡片轮播 */
+.deck{position:relative;height:clamp(460px,54vw,500px);margin:6px 0 10px}
+.card{position:absolute;left:50%;top:0;width:min(560px,86%);height:100%;translate:-50% 0;border:3px solid var(--ink);border-radius:18px;background:var(--paper);overflow:hidden;display:grid;grid-template-rows:minmax(110px,1fr) auto;transition:transform .45s cubic-bezier(.3,1.2,.5,1),opacity .3s,filter .3s;box-shadow:5px 5px 0 var(--ink)}
+.card .shot{display:grid;place-items:center;align-content:center;text-align:center;font-family:"Rubik Doodle Shadow",var(--hand);font-size:clamp(34px,6vw,54px);line-height:1;color:#fff;border-bottom:3px solid var(--ink);padding:10px}
+.card .shot span{display:block;font-family:var(--cn);font-size:15px;margin-top:8px}
+.card .shot.img{background:#fff var(--img) var(--pos,center)/var(--fit,cover) no-repeat;place-items:end start;align-content:end;text-align:left;padding:10px}
+.card .shot.img b{font-weight:400;background:var(--c);border:2.5px solid var(--ink);border-radius:12px;padding:5px 10px 6px;font-size:clamp(20px,3vw,26px);box-shadow:3px 3px 0 var(--ink)}
+.card .shot.img b span{font-size:12px;margin-top:4px}
+.card .role{font-size:13px;color:var(--pink);margin-bottom:4px}
+.card ul{padding-left:18px;font-size:14px;color:var(--muted)}
+.card .meta{padding:14px 18px}
+.card h4{font-size:18px}
+.card p{font-size:14px;color:var(--muted)}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:12px;padding:1px 10px;border:2px solid var(--ink);border-radius:99px;background:var(--pink-soft)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px}
+.filters button{padding:4px 14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--paper);font-size:14px}
+.filters button.on{background:var(--yellow);box-shadow:2px 2px 0 var(--ink)}
+.deck-nav{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:22px}
+.deck-nav button{width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);font-size:20px;box-shadow:2px 2px 0 var(--ink)}
+.deck-nav button:hover{background:var(--yellow)}
+.dots{display:flex;gap:8px}
+.dots span{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink);background:var(--paper)}
+.dots span.on{background:var(--pink)}
+
+/* 技能 */
+.skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.skill-group{border:2.5px solid var(--ink);border-radius:16px;padding:16px;background:var(--cream)}
+.skill-group h4{font-family:var(--cn);font-weight:400;font-size:18px;margin-bottom:10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{padding:3px 12px;border:2px solid var(--ink);border-radius:99px;background:var(--paper);font-size:14px}
+.chips span:nth-child(3n+1){background:var(--pink-soft)}
+.chips span:nth-child(3n+2){background:#fff3bf}
+
+/* 联系 */
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.contact a,.contact div{display:block;padding:18px;border:2.5px solid var(--ink);border-radius:16px;background:var(--cream);text-decoration:none;box-shadow:3px 3px 0 var(--ink);overflow-wrap:anywhere}
+.contact .mail{grid-column:1/-1;white-space:nowrap;word-break:normal}
+.contact a:hover{background:var(--pink-soft)}
+.contact small{display:block;font-family:var(--hand);font-size:16px;color:var(--pink)}
+
+/* ---------- 手机 ---------- */
+@media (max-width:720px){
+  .title{left:16px;top:28px}
+  .title small{font-size:14px;letter-spacing:.04em;max-width:300px}
+  .hint{display:none}
+  .ip{height:min(46vh,420px)}
+  .sticker{--w:clamp(96px,30vw,130px)!important}
+  .s-skills{left:16px;right:auto;top:19vh;bottom:auto}
+  .s-resume{left:auto;right:20px;top:18vh;bottom:auto}
+  .s-works{left:12px;right:auto;top:35vh;bottom:auto}
+  .s-contact{left:auto;right:16px;top:36vh;bottom:auto}
+  .sign{display:none}
+  .tl-item{grid-template-columns:1fr;gap:2px}
+  .panel-body{padding:22px 16px 30px}
+  .panel-head{padding:14px 16px}
+  .deck{height:600px}
+  html[lang=en] .deck{height:690px}
+  .card{grid-template-rows:150px auto}
+  .card .shot{font-size:30px}
 }
-@media print{header,.btns,.theme{display:none}section{padding:24px 0}}
+@media (prefers-reduced-motion:reduce){.sticker{animation:none}*{transition:none!important}}
+@media print{
+  .stage,.panel-head .x,.btn{display:none}
+  .sheet{position:static;opacity:1;background:none;padding:0;display:block}
+  .sheet:not(#resume){display:none}
+  .panel{box-shadow:none;border:0;max-height:none;overflow:visible;translate:0}
+}
 </style>
 </head>
 <body>
-<header><div class="wrap"><nav>
-  <a class="logo" href="#">Ziyuan</a>
-  <div class="links">
-    <a href="#work">作品集</a><a href="#resume">简历</a><a href="#contact">联系</a>
-    <button class="theme" id="theme" aria-label="切换深浅色">◐</button>
-  </div>
-</nav></div></header>
 
-<main class="wrap">
-  <section class="hero">
-    <div class="avatar">Z</div>
-    <div>
-      <h1>你好，我是 Ziyuan</h1>
-      <p>【占位】一句话介绍自己：比如“产品设计师 / 开发者，专注于做简单好用的数字产品”。这里写两三句你的方向和兴趣。</p>
-      <div class="btns">
-        <a class="btn primary" href="#work">看看作品</a>
-        <a class="btn" href="#resume">在线简历</a>
+<main class="stage" id="stage">
+  <!-- 玫红笔刷背景 -->
+  <svg class="paint" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="7"/>
+        <feDisplacementMap in="SourceGraphic" scale="38"/>
+      </filter>
+      <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .18 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
+    </defs>
+    <g filter="url(#rough)">
+      <path fill="#5cc8f5" d="M-40 610 C 180 520 360 650 560 580 S 900 470 1120 560 S 1400 520 1500 470 L1500 940 L-40 940Z"/>
+      <path fill="#0a9ae6" d="M-40 720 C 220 640 420 760 700 690 S 1150 640 1500 700 L1500 940 L-40 940Z"/>
+      <path fill="#0a9ae6" d="M1040 -40 C 1120 60 1260 40 1300 150 S 1420 210 1500 180 L1500 -40Z"/>
+      <path fill="#d6f0ff" d="M-40 -40 L 520 -40 C 470 60 300 40 200 120 S 40 160 -40 230Z"/>
+      <ellipse fill="#ffd84d" cx="1080" cy="380" rx="120" ry="112"/>
+    </g>
+    <g fill="#0a9ae6" opacity=".85">
+      <circle cx="980" cy="250" r="7"/><circle cx="1010" cy="226" r="4"/><circle cx="380" cy="470" r="6"/><circle cx="350" cy="500" r="3"/>
+      <circle cx="1240" cy="420" r="5"/><circle cx="150" cy="420" r="8"/><circle cx="700" cy="140" r="5"/>
+    </g>
+    <g fill="none" stroke="#1a1014" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M640 230 l0 44 M618 252 l44 0"/><path d="M1190 600 l0 34 M1173 617 l34 0"/>
+      <path d="M260 330 l0 30 M245 345 l30 0"/><path d="M880 120 l0 26 M867 133 l26 0"/>
+      <path d="M1350 330 c8 -20 16 -20 24 0 c-8 20 -16 20 -24 0z" fill="#ffd84d"/>
+      <path d="M470 760 c8 -22 18 -22 26 0 c-8 22 -18 22 -26 0z" fill="#ffd84d"/>
+    </g>
+    <rect width="1440" height="900" filter="url(#grain)" fill="#fff"/>
+  </svg>
+
+  <h1 class="title" data-en="WELCOME&lt;br&gt;TO MY &lt;span class=&quot;moon&quot;&gt;SPACE!&lt;/span&gt;&lt;small&gt;Hi, I&#x27;m Ziyuan · Digital Business master&#x27;s student · tap a sticker&lt;/small&gt;">WELCOME<br>TO MY <span class="moon">SPACE!</span><small>我是王子源 · 数字商业硕士在读 · 点贴纸看看我</small></h1>
+  <button class="lang" id="lang" aria-label="Switch language / 切换语言">EN</button>
+  <div class="hint" data-en="Move your mouse, he&#x27;ll follow you 👀">移动鼠标，他会看向你 👀</div>
+
+  <!-- 贴纸：简历 -->
+  <button class="sticker s-resume" data-open="resume" aria-label="打开简历">
+    <svg viewBox="0 0 160 170"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M22 12 L118 8 L140 30 L144 160 L20 164 Z" fill="#fff"/>
+      <path d="M118 8 L120 32 L140 30" fill="#d6f0ff"/>
+      <rect x="40" y="36" width="44" height="52" rx="6" fill="#d6f0ff"/>
+      <circle cx="62" cy="56" r="10" fill="#fff"/><path d="M46 86 c4 -14 28 -14 32 0" fill="#fff"/>
+      <path d="M96 46 h28 M96 60 h22 M38 108 h86 M38 124 h70 M38 140 h80" fill="none"/>
+      <path d="M8 40 l0 18 M-1 49 l18 0" fill="none"/>
+    </g></svg>
+    <span class="lbl">Resume<i>简历</i></span>
+  </button>
+
+  <!-- 贴纸：技能 -->
+  <button class="sticker s-skills" data-open="skills" aria-label="打开技能">
+    <svg viewBox="0 0 220 150"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M46 118 C10 118 10 72 44 70 C40 34 92 22 108 50 C122 20 176 26 172 66 C206 64 212 116 176 118 Z" fill="#fff"/>
+      <path d="M150 20 l7 15 16 2 -12 11 3 16 -14 -8 -14 8 3 -16 -12 -11 16 -2z" fill="#ffd84d"/>
+      <path d="M30 26 l4 9 10 1 -7 7 2 10 -9 -5 -9 5 2 -10 -7 -7 10 -1z" fill="#5cc8f5"/>
+      <path d="M190 128 l0 16 M182 136 l16 0" fill="none"/>
+    </g>
+    <text x="108" y="100" text-anchor="middle" font-family="Gochi Hand, cursive" font-size="34" fill="#0a9ae6">Skills</text></svg>
+    <span class="lbl">Skills<i>技能</i></span>
+  </button>
+
+  <!-- 贴纸：作品 -->
+  <button class="sticker s-works" data-open="works" aria-label="打开作品">
+    <svg viewBox="0 0 260 170"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M50 14 L210 8 L216 118 L44 124 Z" fill="#fff"/>
+      <path d="M62 26 L198 22 L202 106 L58 110 Z" fill="#5cc8f5"/>
+      <path d="M116 46 L152 66 L118 86 Z" fill="#fff"/>
+      <path d="M16 128 L244 120 L232 154 L28 160 Z" fill="#d6f0ff"/>
+      <path d="M104 140 h52" fill="none"/>
+      <path d="M232 20 l0 20 M222 30 l20 0" fill="none"/>
+    </g></svg>
+    <span class="lbl">Works<i>作品</i></span>
+  </button>
+
+  <!-- 贴纸：联系 -->
+  <button class="sticker s-contact" data-open="contact" aria-label="打开联系方式">
+    <svg viewBox="0 0 180 140"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
+      <path d="M14 30 L166 22 L172 124 L18 132 Z" fill="#fff"/>
+      <path d="M14 30 L92 82 L166 22" fill="#d6f0ff"/>
+      <path d="M18 132 L72 76 M172 124 L114 72" fill="none"/>
+      <path d="M138 4 c6 -10 22 -6 18 8 c-2 8 -14 16 -18 20 c-4 -4 -16 -12 -18 -20 c-4 -14 12 -18 18 -8z" fill="#ff5a5f"/>
+    </g></svg>
+    <span class="lbl">Contact<i>联系</i></span>
+  </button>
+
+  <!-- 形象位 -->
+  <div class="ip" id="ip" aria-hidden="true">
+    <div class="ip-ph" id="ipPh">
+      <div class="face" id="face"><span class="eye l"></span><span class="eye r"></span></div>
+      <p>你的卡通形象<br>马上就位</p>
+      <small>加载中…</small>
+    </div>
+  </div>
+
+  <div class="sign">王子源 ✦ Ziyuan</div>
+</main>
+
+<!-- 简历 -->
+<section class="sheet" id="resume" role="dialog" aria-modal="true" aria-labelledby="t-resume">
+  <div class="panel">
+    <div class="panel-head"><div><div class="k">Resume</div><h2 id="t-resume" data-en="Resume">简历</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
+    <div class="panel-body">
+      <div class="intent">
+        <div data-en="&lt;small&gt;Focus&lt;/small&gt;&lt;b&gt;Business Analysis&lt;/b&gt;"><small>发展方向</small><b>商业分析（Business Analyst）</b></div>
+        <div data-en="&lt;small&gt;Now&lt;/small&gt;&lt;b&gt;Building SQL, BI dashboard and Python skills through hands-on analytics projects&lt;/b&gt;"><small>现在在做</small><b>寒假系统学习 SQL、BI 仪表盘、Python，做数据分析作品</b></div>
+        <div data-en="&lt;small&gt;Based in&lt;/small&gt;&lt;b&gt;Harbin, China&lt;/b&gt;"><small>城市</small><b>哈尔滨</b></div>
+      </div>
+      <h3 class="h3" data-en="Education">教育经历</h3>
+      <div class="tl">
+        <div class="tl-item"><div class="when" data-en="2026.07 — 2027.11&lt;br&gt;&lt;small&gt;(expected)&lt;/small&gt;">2026.07 — 2027.11<br><small>（预计）</small></div><div><h4 data-en="Monash University Malaysia">Monash University 蒙纳士大学</h4><div class="org" data-en="Master of Digital Business (in progress)">数字商业硕士（在读）</div><div class="note" data-en="Key units: FinTech, Digital Accounting, Global Supply Chain Management">主要课程：金融科技、数字会计、全球供应链管理</div></div></div>
+        <div class="tl-item"><div class="when">2023.09 — 2026.05</div><div><h4 data-en="Taylor&#x27;s University">Taylor's University 泰莱大学</h4><div class="org" data-en="Bachelor of Business (Honours), Finance">金融学荣誉学士</div><div class="note" data-en="Key units: Applied Econometrics, Quantitative Methods, Corporate Finance, Risk Management, Derivatives">主要课程：应用计量经济学、商业定量方法、公司金融、风险管理、衍生品</div><span class="award" data-en="SHINE Gold Award">SHINE Gold Award 毕业能力评定金奖</span></div></div>
+      </div>
+      <h3 class="h3" data-en="Experience">实习经历</h3>
+      <div class="tl">
+        <div class="tl-item"><div class="when">2026.02 — 2026.04</div><div><h4 data-en="Operations Data Intern">运营数据实习生</h4><div class="org" data-en="Wenzhou Mutian Electric Appliance Co., Ltd.">温州沐田电器有限公司</div><ul>
+          <li data-en="&lt;b&gt;Quotation analysis:&lt;/b&gt; consolidated inquiry and quotation data and compared prices by product and supplier to support pricing decisions."><b>报价分析：</b>汇总询价与产品报价数据，按产品和供应商做价格对比与差异整理，支持业务团队报价决策。</li>
+          <li data-en="&lt;b&gt;Order and cost data:&lt;/b&gt; entered and reconciled order values, quantities and cost details, and produced summaries for quoting and order follow-up."><b>订单与成本数据：</b>录入并核对订单金额、数量和成本明细，完成统计汇总，为报价测算和订单跟进提供准确数据。</li>
+          <li data-en="&lt;b&gt;Process improvement:&lt;/b&gt; wrote an operations report on issues such as verbal hand-offs and inconsistent file storage, and recommended task logs, file-naming rules and an onboarding handbook (internship grade: A)."><b>流程改进：</b>撰写运营分析报告，指出口头交接导致重复确认、文件存储不统一等问题，提出任务留痕、文件命名规范和新员工流程手册等建议（实习课程成绩 A）。</li>
+        </ul></div></div>
+      </div>
+      <h3 class="h3" data-en="Skills &amp; Certificates">技能证书</h3>
+      <div class="chips"><span data-en="Excel PivotTables">Excel 数据透视表</span><span>XLOOKUP / VLOOKUP</span><span data-en="SUMIF &amp; conditional formulas">SUMIF 等条件函数</span><span data-en="EViews OLS regression">EViews OLS 回归</span><span>Bloomberg BMC</span><span>Bloomberg BFF</span><span>Bloomberg ESG</span><span data-en="Mandarin (native) · English (degrees taught in English)">中文母语 · 英语（本硕全英文授课）</span></div>
+      <a class="btn" href="#" id="print" data-en="Print / Save as PDF">打印 / 存为 PDF</a>
+    </div>
+  </div>
+</section>
+
+<!-- 作品 -->
+<section class="sheet" id="works" role="dialog" aria-modal="true" aria-labelledby="t-works">
+  <div class="panel">
+    <div class="panel-head"><div><div class="k">Works</div><h2 id="t-works" data-en="Projects">作品</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
+    <div class="panel-body">
+      <div class="filters" id="filters"><button class="on" data-f="all" data-en="All 13">全部 13</button><button data-f="m" data-en="Master&#x27;s · Monash">研究生 · 蒙纳士</button><button data-f="u" data-en="Bachelor&#x27;s · Taylor&#x27;s">本科 · 泰莱</button><button data-f="c" data-en="AI Creative">AI 创作</button></div>
+      <div class="deck" id="deck">
+        <article class="card" data-g="m"><div class="shot img" style="--c:#0a9ae6;--img:url(assets/works/audit.webp);--pos:left top;--fit:cover"><b data-en="6 exceptions&lt;span&gt;Carbon-credit audit memo&lt;/span&gt;">6 项异常<span>碳信用交易审计备忘录</span></b></div><div class="meta"><div class="role" data-en="Monash · Digital Accounting · 2026.10">蒙纳士数字会计课程 · 2026.10</div><h4 data-en="Reviewed 601 transactions and 2,401 journal lines">审查 601 笔交易、2,401 条分录</h4><ul><li data-en="Checked block links, transfer amounts, journal balance, manual entries, holdings and retirement uniqueness">逐项核对区块链接、转账金额、分录平衡、手工分录、持有余额和注销唯一性</li><li data-en="Found 6 exceptions (broken links, wrong amounts, over-transfers, duplicate retirements) worth about MYR 1.02M">识别断链、金额错误、超额转让、重复注销等 6 项异常，直接涉及金额约 MYR 102 万</li><li data-en="Used PivotTables, COUNTIF and balance recalculation; proposed 5 controls with formula prototypes">用数据透视表、COUNTIF 和余额重算完成检查，提出 5 类控制建议并做了公式原型</li></ul><div class="tags"><span class="tag" data-en="Excel audit">Excel 审计</span><span class="tag" data-en="Data validation">数据核查</span><span class="tag" data-en="Internal control">内部控制</span></div></div></article>
+        <article class="card" data-g="m"><div class="shot img" style="--c:#38bdf8;--img:url(assets/works/monsoon.webp);--pos:center top;--fit:cover"><b data-en="ROA 80.5%&lt;span&gt;MonsoonSIM business simulation&lt;/span&gt;">ROA 80.5%<span>MonsoonSIM 企业经营模拟</span></b></div><div class="meta"><div class="role" data-en="Team leader (5) · Finance lead · Monash · Digital Accounting · 2026.09–10">5 人小组组长 · 负责财务 · 蒙纳士数字会计课程 · 2026.09–10</div><h4 data-en="AUD 55.9M revenue, AUD 14.4M net profit">收入 5,590 万澳元，净利润 1,440 万澳元</h4><ul><li data-en="Premium retail plus large B2B orders: 25 B2B contracts, AAA credit, zero debt">“高价零售 + B2B 大单”双渠道，完成 25 份 B2B 合同，AAA 信用、零负债</li><li data-en="Board report: found AUD 5.87M in warehouse overflow fees, 41% of net profit">董事会财务报告：发现仓储溢出费 587 万澳元，占净利润 41%</li><li data-en="Broke down four drivers of the recession-period ROA drop and made 9 recommendations">拆解衰退期 ROA 下滑四大主因，提出 9 项改进建议</li></ul><div class="tags"><span class="tag" data-en="Financial analysis">财务分析</span><span class="tag" data-en="Business decisions">经营决策</span><span class="tag" data-en="Leadership">团队领导</span></div></div></article>
+        <article class="card" data-g="m"><div class="shot" style="background:#0e7490" data-en="−30% damage&lt;span&gt;Shanghai Zhenya supply-chain strategy&lt;/span&gt;">−30% 破损<span>上海震雅供应链战略分析</span></div><div class="meta"><div class="role" data-en="Group report · Monash · Global Supply Chain Mgmt · 2026.10">小组报告 · 蒙纳士全球供应链管理课程 · 2026.10</div><h4 data-en="Interviewed a real manufacturer to diagnose its project-based supply chain">访谈真实制造企业，诊断项目型供应链</h4><ul><li data-en="Mapped the full flow from demand and production to outsourced transport and installation">以项目经理访谈为基础，梳理从需求、生产、外协运输到安装验收的全流程</li><li data-en="Key idea: a shared Excel supplier-and-route scorecard instead of costly ERP, targeting −30% damage and −25% rework delays in 6 months">主建议：用共享 Excel 供应商-线路评分卡替代昂贵 ERP，目标 6 个月内破损事故 −30%、返工延误 −25%</li><li data-en="Plus pre-order capacity checks, a weekly priority list and bidding integrity rules">配套接单前产能确认、周优先级清单和投标廉洁规则</li></ul><div class="tags"><span class="tag" data-en="Supply chain">供应链</span><span class="tag" data-en="Interview">企业访谈</span><span class="tag" data-en="Process improvement">流程改进</span></div></div></article>
+        <article class="card" data-g="m"><div class="shot" style="background:#6366f1" data-en="Aave V3&lt;span&gt;Ethereum lending protocol analysis&lt;/span&gt;">Aave V3<span>以太坊借贷协议分析</span></div><div class="meta"><div class="role" data-en="Team of 5 · My part: Singapore regulation &amp; conclusion · Monash · FinTech · 2026.09">5 人小组 · 本人负责新加坡监管与结论 · 蒙纳士金融科技课程 · 2026.09</div><h4 data-en="Is DeFi lending efficient enough to justify its risks?">DeFi 借贷的效率是否值得用户承担的风险？</h4><ul><li data-en="Compared Aave with Singapore bank loans on pricing, governance and risk">对比 Aave 与新加坡银行贷款的定价、治理与风险</li><li data-en="My part: mapped regulatory gaps under the Payment Services Act; regulation should target identifiable controllers">本人部分：按《支付服务法》梳理监管空白，指出监管应聚焦可识别的控制方</li><li data-en="Conclusion: Aave is a tool for expert self-custody users, not a substitute for regulated bank lending">结论：Aave 是专业、自管型借贷工具，不能替代受监管的银行贷款</li></ul><div class="tags"><span class="tag" data-en="FinTech">金融科技</span><span class="tag">DeFi</span><span class="tag" data-en="Regulatory analysis">监管分析</span></div></div></article>
+        <article class="card" data-g="m"><div class="shot" style="background:#f5b700" data-en="🍋 Supply&lt;span&gt;Mixue lemon supply chain&lt;/span&gt;">🍋 供应链<span>蜜雪冰城柠檬供应链分析</span></div><div class="meta"><div class="role" data-en="Individual essay · Monash · Global Supply Chain Mgmt · 2026.10">个人论文 · 蒙纳士全球供应链管理课程 · 2026.10</div><h4 data-en="Extreme weather, lemon supply and vertical integration">极端天气下的柠檬供应链与纵向整合</h4><ul><li data-en="Analysed supply shocks using USDA forecasts and Mixue&#x27;s Hong Kong IPO prospectus">结合 USDA 产量预测与蜜雪集团港股招股书分析供应冲击</li><li data-en="Assessed how moving upstream into farming affects supply stability and cost">评估向上游种植延伸对供应稳定和成本的作用</li></ul><div class="tags"><span class="tag" data-en="Supply chain">供应链</span><span class="tag" data-en="Industry research">行业研究</span></div></div></article>
+        <article class="card" data-g="m"><div class="shot" style="background:#0369a1" data-en="RM 99,900&lt;span&gt;Family Guardian Circle anti-scam design&lt;/span&gt;">RM 99,900<span>Family Guardian Circle 防诈骗转账方案</span></div><div class="meta"><div class="role" data-en="Individual report · Monash · FinTech · 2026.10">个人报告 · 蒙纳士金融科技课程 · 2026.10</div><h4 data-en="A trusted-family safeguard for Malaysian bank customers aged 60+">给马来西亚 60 岁以上银行用户设计“家人守护”功能</h4><ul><li data-en="From police data: older victims are 6.4% of cases but about a fifth of losses, roughly RM 99,900 each (vs RM 31,300 overall)">用警方数据算出：老年受害者只占 6.4%，损失却占约五分之一，人均约 RM 99,900（整体约 RM 31,300）</li><li data-en="Design: customers opt in a trusted contact; high-risk transfers pause for 15 minutes for family alert and bank review">设计方案：用户自愿指定一位家人，高风险转账先暂停 15 分钟，通知家人并由银行人工复核</li><li data-en="Checked against BNM&#x27;s RMiT policy and cases such as Singapore&#x27;s Money Lock, including limits">对照马来西亚央行 RMiT 规定、新加坡 Money Lock 等案例，说明合规性和局限</li></ul><div class="tags"><span class="tag" data-en="FinTech">金融科技</span><span class="tag" data-en="Product design">产品设计</span><span class="tag" data-en="Data interpretation">数据解读</span></div></div></article>
+        <article class="card" data-g="m"><div class="shot img" style="--c:#2563eb;--img:url(assets/works/rfid.webp);--pos:center;--fit:cover"><b data-en="RFID&lt;span&gt;Decathlon RFID case · solo talk&lt;/span&gt;">RFID<span>迪卡侬 RFID 案例 · 个人演讲</span></b></div><div class="meta"><div class="role" data-en="Solo video presentation · Monash · Digital Accounting · 2026.10">个人视频演讲 · 蒙纳士数字会计课程 · 2026.10</div><h4 data-en="Should sports retailers follow Decathlon into RFID?">运动零售商该不该学迪卡侬上 RFID？</h4><ul><li data-en="Unpacked Decathlon&#x27;s rollout: 100% of products tagged, 50,000+ readers, about 1,500 stores">拆解迪卡侬 100% 商品贴标、5 万多台读写器、约 1,500 家门店的做法和收益</li><li data-en="Analysed three barriers (cost and ROI, system integration, training) for Malaysian retailers">分析成本与回报、系统对接、员工培训三大障碍，结合马来西亚零售商的情况</li><li data-en="&quot;Adopt the strategy, not the scale&quot;: pilot on high-volume items, measure accuracy, checkout time, overstock and sales, then expand">建议“学策略不学规模”：先挑高销量商品小范围试点，看库存准确率、结账时间、积压库存和销售额再扩大</li></ul><div class="tags"><span class="tag" data-en="Retail tech">零售科技</span><span class="tag" data-en="ROI">投资回报</span><span class="tag" data-en="Presentation">英文演讲</span></div></div></article>
+        <article class="card" data-g="u"><div class="shot img" style="--c:#2563eb;--img:url(assets/works/msft.webp);--pos:center 30%;--fit:cover"><b data-en="R² 0.94&lt;span&gt;Microsoft dividends &amp; valuation&lt;/span&gt;">R² 0.94<span>微软股利政策与估值分析</span></b></div><div class="meta"><div class="role" data-en="Team of 4 · My part: dividend analysis · Taylor&#x27;s · Corporate Finance · 2025">4 人小组 · 本人负责股利分析 · 泰莱公司金融课程 · 2025</div><h4 data-en="Regressed dividends on P/E using Bloomberg Terminal data">用 Bloomberg 终端数据回归股利与市盈率</h4><ul><li data-en="Compiled 2015–2022 payout ratio, dividend yield and P/E">整理 2015–2022 年股利支付率、股息率与市盈率</li><li data-en="Dividend variables explained 94% of P/E variation, read through signalling and bird-in-hand theory">回归显示股利变量可解释 94% 的市盈率变化，并用股利信号理论、一鸟在手理论解读</li><li data-en="Compared capital-structure theories: low debt and strong cash flow mean growth is mainly self-funded">同时比较资本结构理论，结论：微软低负债、高现金流，增长主要靠自有资金</li></ul><div class="tags"><span class="tag" data-en="Corporate finance">公司金融</span><span class="tag">Bloomberg</span><span class="tag" data-en="Regression">回归分析</span></div></div></article>
+        <article class="card" data-g="u"><div class="shot img" style="--c:#64748b;--img:url(assets/works/apple.webp);--pos:center;--fit:contain"><b data-en="63.8%&lt;span&gt;Apple FX &amp; interest-rate hedging&lt;/span&gt;">63.8%<span>苹果汇率与利率风险对冲</span></b></div><div class="meta"><div class="role" data-en="Individual assignment · Taylor&#x27;s · International Finance · 2025.06">个人作业 · 泰莱国际金融课程 · 2025.06</div><h4 data-en="How a company with 63.8% overseas revenue hedges risk">海外收入占比 63.8% 的公司怎么对冲风险</h4><ul><li data-en="Analysed Apple&#x27;s FX exposure and interest-rate risk from rate hikes">分析苹果面临的外汇风险与加息带来的利率风险</li><li data-en="Evaluated forwards, options, swaps and how well the hedges worked">评估其远期、期权、利率互换等对冲工具和策略效果</li></ul><div class="tags"><span class="tag" data-en="International finance">国际金融</span><span class="tag" data-en="Risk management">风险管理</span></div></div></article>
+        <article class="card" data-g="u"><div class="shot img" style="--c:#7c3aed;--img:url(assets/works/gdp.webp);--pos:center;--fit:contain"><b data-en="GDP 1970–2019&lt;span&gt;Drivers of Malaysian growth&lt;/span&gt;">GDP 1970–2019<span>马来西亚经济增长影响因素</span></b></div><div class="meta"><div class="role" data-en="Group project · Taylor&#x27;s · Applied Econometrics · 2025.09–2026.01">小组项目 · 泰莱应用计量经济学课程 · 2025.09–2026.01</div><h4 data-en="Tested growth drivers with an EViews OLS model">用 EViews 建 OLS 模型检验增长因素</h4><ul><li data-en="World Bank data on credit, investment, inflation, human capital and the Asian financial crisis">基于世界银行数据，检验信贷、投资、通胀、人力资本和亚洲金融危机的影响</li><li data-en="My part: research design, problem statement, data checks and multicollinearity diagnostics">负责研究设计与问题陈述，做数据检查和多重共线性诊断</li></ul><div class="tags"><span class="tag" data-en="Econometrics">计量经济学</span><span class="tag">EViews</span></div></div></article>
+        <article class="card" data-g="u"><div class="shot img" style="--c:#10b981;--img:url(assets/works/naturenib.webp);--pos:center;--fit:cover"><b data-en="RM 1&lt;span&gt;NatureNib edible ice-cream stick startup&lt;/span&gt;">RM 1<span>NatureNib 可食用冰棍棒创业</span></b></div><div class="meta"><div class="role" data-en="Team leader · Taylor&#x27;s · Entrepreneurship Accelerator · 2025.04–2026.01">小组组长 · 泰莱创业加速器课程 · 2025.04–2026.01</div><h4 data-en="Best Idea Award at the course pitch">课程路演“最佳创意奖”</h4><ul><li data-en="Led a team of 6 from idea and recipe tests to a full business plan and pitch">6 人团队组长，从创意、配方测试做到完整商业计划和路演</li><li data-en="Surveyed 86 consumers aged 18–35 and sized the market (SOM about USD 400K)">问卷调研 86 位 18–35 岁消费者，测算市场规模（SOM 约 40 万美元）</li><li data-en="Benchmarked 3 competitors; priced at RM 1 with 40% margin and break-even in month 18">对比 3 个竞品定价，定价 RM 1、毛利 40%，测算第 18 个月回本</li><li data-en="Two recipe iterations (oats too soft, then chia) and further tuning from judges&#x27; feedback">两轮配方迭代（燕麦太软 → 奇亚籽），根据评委反馈继续调整口感</li></ul><div class="tags"><span class="tag" data-en="Business plan">商业计划</span><span class="tag" data-en="Market research">市场调研</span><span class="tag" data-en="Financial forecast">财务预测</span><span class="tag" data-en="Leadership">团队领导</span></div></div></article>
+        <article class="card" data-g="u"><div class="shot img" style="--c:#64748b;--img:url(assets/works/co2.webp);--pos:center;--fit:contain"><b data-en="CO₂&lt;span&gt;Drivers of China&#x27;s carbon emissions&lt;/span&gt;">CO₂<span>中国碳排放影响因素回归分析</span></b></div><div class="meta"><div class="role" data-en="Group work · My part: conclusion, policy and limitations · Taylor&#x27;s · Applied Econometrics · 2025.07">小组作业 · 本人负责结论、政策建议与局限 · 泰莱应用计量经济学 · 2025.07</div><h4 data-en="EViews OLS regression on 1994–2023 data">1994–2023 年数据，EViews OLS 回归</h4><ul><li data-en="Tested GDP, urbanisation rate, renewables share, vehicle ownership and urban population">检验 GDP、城镇化率、可再生能源占比、汽车保有量、城市人口对碳排放的影响</li><li data-en="Vehicles, GDP and urban population were significant, urbanisation rate was not; adjusted R² above 99%">汽车保有量、GDP、城市人口显著，城镇化率不显著；调整后 R² 超过 99%</li><li data-en="Ran unit-root, heteroskedasticity, serial-correlation and VIF tests, then wrote transport and energy-transition recommendations">做了单位根、异方差、序列相关和多重共线性检验，并据此写出交通减排和能源转型建议</li></ul><div class="tags"><span class="tag">EViews</span><span class="tag" data-en="Regression">回归分析</span><span class="tag" data-en="Policy">政策建议</span></div></div></article>
+        <article class="card" data-g="c"><div class="shot img" style="--c:#ec4899;--img:url(assets/works/ai.webp);--pos:center 15%;--fit:cover"><b data-en="100 eps&lt;span&gt;AI short drama &amp; sticker IP&lt;/span&gt;">100 集<span>AI 短剧《丁总的小祖宗》与表情包</span></b></div><div class="meta"><div class="role" data-en="Personal project · Planning + AI production · 2026.10–11">个人项目 · 策划 + AI 制作 · 2026.10–11</div><h4 data-en="Turned my two dogs into an original IP, from stickers to a short drama">用自家两只狗做成原创 IP，从表情包做到短剧</h4><ul><li data-en="Wrote a 100-episode outline: four arcs, paywalls at episodes 10/25/50/75, and 5 reusable sets covering about 80% of episodes to keep production lean">写了 100 集短剧大纲：四个篇章、付费卡点设在第 10/25/50/75 集，5 个固定场景覆盖约 80% 集数，控制制作量</li><li data-en="Designed characters and sticker sets with AI (42 for the lead), plus two 16-piece animated sticker packs">用 AI 画出角色形象和成套表情（主角丁丁 42 张），另做了两套 16 张中文动图表情包</li><li data-en="Planned spin-off shots and prompts for Seedance video, and prepared copyright registration files">用即梦 Seedance 规划番外视频的分镜和提示词，并整理了角色版权登记材料</li></ul><div class="tags"><span class="tag" data-en="AI tools">AI 工具</span><span class="tag" data-en="Content planning">内容策划</span><span class="tag" data-en="IP design">IP 设计</span></div></div></article>
+      </div>
+      <div class="deck-nav"><button id="prev" aria-label="上一个">←</button><div class="dots" id="dots"></div><button id="next" aria-label="下一个">→</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 技能 -->
+<section class="sheet" id="skills" role="dialog" aria-modal="true" aria-labelledby="t-skills">
+  <div class="panel">
+    <div class="panel-head"><div><div class="k">Skills</div><h2 id="t-skills" data-en="Skills">技能</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
+    <div class="panel-body">
+      <div class="skills">
+        <div class="skill-group"><h4 data-en="Data analysis">数据分析</h4><div class="chips"><span data-en="Excel PivotTables">Excel 数据透视表</span><span>VLOOKUP / XLOOKUP</span><span data-en="SUMIF &amp; conditional formulas">SUMIF 等条件函数</span><span data-en="Excel charts">Excel 图表</span><span data-en="EViews OLS regression">EViews OLS 回归</span></div></div>
+        <div class="skill-group"><h4 data-en="Business &amp; finance">商业与财务</h4><div class="chips"><span data-en="Financial report review">财务报告诊断</span><span data-en="Pricing &amp; cost analysis">报价与成本分析</span><span data-en="Supply-chain analysis">供应链分析</span><span data-en="Econometrics">计量经济学</span><span data-en="Corporate finance">公司金融</span><span data-en="Risk management">风险管理</span><span data-en="Process improvement">流程改进</span></div></div>
+        <div class="skill-group"><h4 data-en="Certificates">证书</h4><div class="chips"><span>Bloomberg Market Concepts</span><span>Bloomberg Finance Fundamentals</span><span>Bloomberg ESG</span></div></div>
+        <div class="skill-group"><h4 data-en="Languages">语言</h4><div class="chips"><span data-en="Mandarin · native">中文 · 母语</span><span data-en="English · degrees taught in English">英语 · 本硕全英文授课</span></div></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="work">
-    <h2>作品集</h2>
-    <div class="grid">
-      <a class="card" href="#"><div class="thumb" style="background:linear-gradient(135deg,#2563eb,#7c3aed)">作品截图</div>
-        <div class="card-body"><h3>项目名称一</h3><p>【占位】一两句话说明这个项目做了什么、你负责什么、结果如何。</p>
-        <div class="tags"><span class="tag">设计</span><span class="tag">前端</span></div></div></a>
-      <a class="card" href="#"><div class="thumb" style="background:linear-gradient(135deg,#059669,#0891b2)">作品截图</div>
-        <div class="card-body"><h3>项目名称二</h3><p>【占位】一两句话说明这个项目做了什么、你负责什么、结果如何。</p>
-        <div class="tags"><span class="tag">产品</span></div></div></a>
-      <a class="card" href="#"><div class="thumb" style="background:linear-gradient(135deg,#ea580c,#db2777)">作品截图</div>
-        <div class="card-body"><h3>项目名称三</h3><p>【占位】一两句话说明这个项目做了什么、你负责什么、结果如何。</p>
-        <div class="tags"><span class="tag">视频</span><span class="tag">品牌</span></div></div></a>
+<!-- 联系 -->
+<section class="sheet" id="contact" role="dialog" aria-modal="true" aria-labelledby="t-contact">
+  <div class="panel">
+    <div class="panel-head"><div><div class="k">Contact</div><h2 id="t-contact" data-en="Contact">联系我</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
+    <div class="panel-body">
+      <div class="contact">
+        <a class="mail" href="mailto:ryan12332190@gmail.com"><small>Email</small>ryan12332190@gmail.com</a>
+        <a href="https://github.com/Ziyuan3123" target="_blank" rel="noopener"><small>GitHub</small>Ziyuan3123</a>
+        <div data-en="&lt;small&gt;Now&lt;/small&gt;Building my data-analysis skills · happy to connect"><small>现在在做</small>系统提升数据分析技能 · 欢迎交流</div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="resume">
-    <h2>简历</h2>
-    <h3 class="sub" style="margin-top:0">工作经历</h3>
-    <div class="timeline">
-      <div class="item"><div class="when">2024 — 至今</div><div>
-        <h3>职位名称</h3><div class="org">公司名称</div>
-        <ul><li>【占位】主要职责或成果一</li><li>【占位】主要职责或成果二</li></ul></div></div>
-      <div class="item"><div class="when">2022 — 2024</div><div>
-        <h3>职位名称</h3><div class="org">公司名称</div>
-        <ul><li>【占位】主要职责或成果一</li></ul></div></div>
-    </div>
-    <h3 class="sub">教育背景</h3>
-    <div class="timeline">
-      <div class="item"><div class="when">2018 — 2022</div><div>
-        <h3>学校名称</h3><div class="org">专业 · 学位</div></div></div>
-    </div>
-    <h3 class="sub">技能</h3>
-    <div class="skills"><span>技能一</span><span>技能二</span><span>技能三</span><span>技能四</span><span>技能五</span></div>
-    <div class="btns" style="margin-top:32px"><a class="btn" href="#" onclick="window.print();return false">打印 / 存为 PDF</a></div>
-  </section>
-
-  <section id="contact" style="border-bottom:none">
-    <h2>联系我</h2>
-    <div class="contact">
-      <a href="mailto:you@example.com"><small>邮箱</small>you@example.com</a>
-      <a href="https://github.com/Ziyuan3123" target="_blank" rel="noopener"><small>GitHub</small>Ziyuan3123</a>
-      <a href="#"><small>微信 / 其他</small>【占位】</a>
-    </div>
-  </section>
-</main>
-<footer>© <span id="y"></span> Ziyuan</footer>
 <script>
-document.getElementById('y').textContent=new Date().getFullYear();
-const r=document.documentElement,b=document.getElementById('theme');
-try{const t=localStorage.getItem('theme');if(t)r.dataset.theme=t}catch(e){}
-b.onclick=()=>{const dark=r.dataset.theme?r.dataset.theme==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
-r.dataset.theme=dark?'light':'dark';try{localStorage.setItem('theme',r.dataset.theme)}catch(e){}};
+/* 弹出页面：点贴纸打开，地址栏带 #resume 等也能直接打开 */
+const sheets=[...document.querySelectorAll('.sheet')];
+function openSheet(id){sheets.forEach(s=>s.classList.toggle('open',s.id===id));document.body.style.overflow=id?'hidden':'';
+  const s=document.getElementById(id);if(s)s.querySelector('.x').focus();}
+document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{history.replaceState(null,'','#'+b.dataset.open);openSheet(b.dataset.open)});
+function closeAll(){history.replaceState(null,'',location.pathname);openSheet(null)}
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=closeAll);
+sheets.forEach(s=>s.onclick=e=>{if(e.target===s)closeAll()});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
+if(location.hash)openSheet(location.hash.slice(1));
+document.getElementById('print').onclick=e=>{e.preventDefault();print()};
+
+/* 作品叠卡 */
+const all=[...document.querySelectorAll('#deck .card')],dots=document.getElementById('dots');let cards=all,cur=0;
+function layout(){all.forEach(c=>{if(!cards.includes(c)){c.style.opacity=0;c.style.zIndex=0;c.style.pointerEvents='none';}});
+  cards.forEach((c,i)=>{const k=(i-cur+cards.length)%cards.length;c.style.pointerEvents='';
+  c.style.zIndex=cards.length-k;c.style.opacity=k>2?0:1;c.style.filter=k?'saturate(.6) brightness(.97)':'none';
+  c.style.transform=`translate(${k*26}px,${k*-14}px) rotate(${k?(k%2?4:-3):0}deg) scale(${1-k*.05})`;});
+  dots.innerHTML='';cards.forEach((_,i)=>{const d=document.createElement('span');if(i===cur)d.className='on';dots.appendChild(d)});}
+const step=n=>{cur=(cur+n+cards.length)%cards.length;layout()};
+document.getElementById('next').onclick=()=>step(1);
+document.getElementById('prev').onclick=()=>step(-1);
+document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
+  cards=b.dataset.f==='all'?all:all.filter(c=>c.dataset.g===b.dataset.f);cur=0;layout();});
+let sx=null;const deck=document.getElementById('deck');
+deck.addEventListener('pointerdown',e=>sx=e.clientX);
+deck.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)step(dx<0?1:-1)});
+addEventListener('keydown',e=>{if(!document.getElementById('works').classList.contains('open'))return;if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
+layout();
+
+/* 形象跟随鼠标：赛车手图集由 assets/racer/racer-follow.js 接管；图集加载前，占位脸的眼睛先跟着鼠标转。 */
+const ip=document.getElementById('ip'),face=document.getElementById('face');
+addEventListener('pointermove',e=>{
+  if(!face||!face.isConnected)return;
+  const r=ip.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.3);
+  const m=Math.min(1,Math.hypot(dx,dy)/400),ang=Math.atan2(dy,dx);
+  face.querySelectorAll('.eye').forEach(el=>el.style.transform=`translate(${Math.cos(ang)*m*9}px,${Math.sin(ang)*m*7}px)`);
+},{passive:true});
+/* 中英切换：带 data-en 的元素切换内容；默认跟随浏览器语言，可用 ?lang=en 指定 */
+const langBtn=document.getElementById('lang');
+function setLang(l){
+  document.documentElement.lang=l==='en'?'en':'zh-CN';
+  document.querySelectorAll('[data-en]').forEach(el=>{if(el.dataset.zh===undefined)el.dataset.zh=el.innerHTML;el.innerHTML=l==='en'?el.dataset.en:el.dataset.zh;});
+  langBtn.textContent=l==='en'?'中文':'EN';
+  document.title=l==='en'?'Ziyuan Wang · Portfolio':'王子源 Ziyuan · 个人主页';
+  try{localStorage.setItem('lang',l)}catch(e){}
+}
+langBtn.onclick=()=>setLang(document.documentElement.lang==='en'?'zh':'en');
+{let l=new URLSearchParams(location.search).get('lang');
+ if(!l){try{l=localStorage.getItem('lang')}catch(e){}}
+ if(!l)l=(navigator.language||'zh').toLowerCase().startsWith('zh')?'zh':'en';
+ if(l==='en')setLang('en');}
 </script>
+<script src="assets/racer/racer-follow.js" defer></script>
 </body>
 </html>
