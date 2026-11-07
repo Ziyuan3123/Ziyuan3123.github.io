@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ziyuan 的小宇宙</title>
-<meta name="description" content="Ziyuan 的作品集与在线简历">
+<title>王子源 Ziyuan · 个人主页</title>
+<meta name="description" content="王子源（Ziyuan）的在线简历与项目作品：蒙纳士大学数字商业硕士在读，求职商业分析实习。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Gochi+Hand&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
@@ -76,10 +76,20 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .btn{display:inline-block;margin-top:24px;padding:10px 20px;border:2.5px solid var(--ink);border-radius:12px;background:var(--yellow);font-weight:700;box-shadow:3px 3px 0 var(--ink);text-decoration:none}
 .btn:active{translate:2px 2px;box-shadow:1px 1px 0 var(--ink)}
 
+.intent{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin-bottom:8px}
+.intent div{padding:12px 16px;border:2.5px dashed var(--ink);border-radius:14px;background:#fff8d6}
+.intent small{display:block;font-family:var(--hand);font-size:15px;color:var(--pink)}
+.intent b{font-size:16px}
+.tl-item .note{font-size:14px;color:var(--muted);margin-top:4px}
+.award{display:inline-block;margin-top:6px;font-size:13px;padding:1px 10px;border:2px solid var(--ink);border-radius:99px;background:var(--yellow)}
+
 /* 作品：叠放卡片轮播 */
-.deck{position:relative;height:clamp(320px,46vw,430px);margin:6px 0 10px}
-.card{position:absolute;left:50%;top:0;width:min(560px,86%);height:100%;translate:-50% 0;border:3px solid var(--ink);border-radius:18px;background:var(--paper);overflow:hidden;display:grid;grid-template-rows:1fr auto;transition:transform .45s cubic-bezier(.3,1.2,.5,1),opacity .3s,filter .3s;box-shadow:5px 5px 0 var(--ink)}
-.card .shot{display:grid;place-items:center;font-family:var(--hand);font-size:28px;color:#fff;border-bottom:3px solid var(--ink)}
+.deck{position:relative;height:clamp(440px,52vw,470px);margin:6px 0 10px}
+.card{position:absolute;left:50%;top:0;width:min(560px,86%);height:100%;translate:-50% 0;border:3px solid var(--ink);border-radius:18px;background:var(--paper);overflow:hidden;display:grid;grid-template-rows:minmax(110px,1fr) auto;transition:transform .45s cubic-bezier(.3,1.2,.5,1),opacity .3s,filter .3s;box-shadow:5px 5px 0 var(--ink)}
+.card .shot{display:grid;place-items:center;align-content:center;text-align:center;font-family:"Rubik Doodle Shadow",var(--hand);font-size:clamp(34px,6vw,54px);line-height:1;color:#fff;border-bottom:3px solid var(--ink);padding:10px}
+.card .shot span{display:block;font-family:var(--cn);font-size:15px;margin-top:8px}
+.card .role{font-size:13px;color:var(--pink);margin-bottom:4px}
+.card ul{padding-left:18px;font-size:14px;color:var(--muted)}
 .card .meta{padding:14px 18px}
 .card h4{font-size:18px}
 .card p{font-size:14px;color:var(--muted)}
@@ -163,7 +173,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <rect width="1440" height="900" filter="url(#grain)" fill="#fff"/>
   </svg>
 
-  <h1 class="title">WELCOME<br>TO MY <span class="moon">SPACE!</span><small>Ziyuan 的小宇宙 · 点贴纸看看我</small></h1>
+  <h1 class="title">WELCOME<br>TO MY <span class="moon">SPACE!</span><small>我是王子源 · 数字商业硕士在读 · 点贴纸看看我</small></h1>
   <div class="hint">移动鼠标，他会看向你 👀</div>
 
   <!-- 贴纸：简历 -->
@@ -224,7 +234,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     </div>
   </div>
 
-  <div class="sign">Ziyuan ✦ 2026</div>
+  <div class="sign">王子源 ✦ Ziyuan</div>
 </main>
 
 <!-- 简历 -->
@@ -232,15 +242,26 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <div class="panel">
     <div class="panel-head"><div><div class="k">Resume</div><h2 id="t-resume">简历</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
     <div class="panel-body">
-      <h3 class="h3">工作 / 实习经历</h3>
-      <div class="tl">
-        <div class="tl-item"><div class="when">2024 — 至今</div><div><h4>职位名称</h4><div class="org">公司名称</div><ul><li>【占位】主要职责或成果一</li><li>【占位】主要职责或成果二</li></ul></div></div>
-        <div class="tl-item"><div class="when">2022 — 2024</div><div><h4>职位名称</h4><div class="org">公司名称</div><ul><li>【占位】主要职责或成果一</li></ul></div></div>
+      <div class="intent">
+        <div><small>求职意向</small><b>商业分析实习生</b></div>
+        <div><small>时间</small><b>假期全职，每周 5 天，可实习至 2027 年 2 月底</b></div>
+        <div><small>城市</small><b>哈尔滨</b></div>
       </div>
-      <h3 class="h3">教育背景</h3>
+      <h3 class="h3">教育经历</h3>
       <div class="tl">
-        <div class="tl-item"><div class="when">2018 — 2022</div><div><h4>学校名称</h4><div class="org">专业 · 学位</div></div></div>
+        <div class="tl-item"><div class="when">2026.07 — 2027.11<br><small>（预计）</small></div><div><h4>Monash University 蒙纳士大学</h4><div class="org">数字商业硕士（在读）</div><div class="note">主要课程：金融科技、数字会计、全球供应链管理</div></div></div>
+        <div class="tl-item"><div class="when">2023.09 — 2026.05</div><div><h4>Taylor's University 泰莱大学</h4><div class="org">金融学荣誉学士</div><div class="note">主要课程：应用计量经济学、商业定量方法、公司金融、风险管理、衍生品</div><span class="award">SHINE Gold Award 毕业能力评定金奖</span></div></div>
       </div>
+      <h3 class="h3">实习经历</h3>
+      <div class="tl">
+        <div class="tl-item"><div class="when">2026.02 — 2026.04</div><div><h4>运营数据实习生</h4><div class="org">温州沐田电器有限公司</div><ul>
+          <li><b>报价分析：</b>汇总询价与产品报价数据，按产品和供应商做价格对比与差异整理，支持业务团队报价决策。</li>
+          <li><b>订单与成本数据：</b>录入并核对订单金额、数量和成本明细，完成统计汇总，为报价测算和订单跟进提供准确数据。</li>
+          <li><b>流程改进：</b>撰写运营分析报告，指出口头交接导致重复确认、文件存储不统一等问题，提出任务留痕、文件命名规范和新员工流程手册等建议（实习课程成绩 A）。</li>
+        </ul></div></div>
+      </div>
+      <h3 class="h3">技能证书</h3>
+      <div class="chips"><span>Excel 数据透视表</span><span>XLOOKUP / VLOOKUP</span><span>SUMIF 等条件函数</span><span>EViews OLS 回归</span><span>Bloomberg BMC</span><span>Bloomberg BFF</span><span>Bloomberg ESG</span><span>中文母语 · 英语（本硕全英文授课）</span></div>
       <a class="btn" href="#" id="print">打印 / 存为 PDF</a>
     </div>
   </div>
@@ -252,10 +273,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="panel-head"><div><div class="k">Works</div><h2 id="t-works">作品</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
     <div class="panel-body">
       <div class="deck" id="deck">
-        <article class="card"><div class="shot" style="background:#0a9ae6">Project 01</div><div class="meta"><h4>项目名称一</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span><span class="tag">标签</span></div></div></article>
-        <article class="card"><div class="shot" style="background:#6366f1">Project 02</div><div class="meta"><h4>项目名称二</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span></div></div></article>
-        <article class="card"><div class="shot" style="background:#f59e0b">Project 03</div><div class="meta"><h4>项目名称三</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span></div></div></article>
-        <article class="card"><div class="shot" style="background:#10b981">Project 04</div><div class="meta"><h4>项目名称四</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span></div></div></article>
+        <article class="card"><div class="shot" style="background:#0a9ae6">ROA 80.5%<span>MonsoonSIM 企业经营模拟</span></div><div class="meta"><div class="role">5 人小组组长 · 负责财务 · 蒙纳士数字会计课程 · 2026.09–10</div><h4>收入 5,590 万澳元，净利润 1,440 万澳元</h4><ul><li>“高价零售 + B2B 大单”双渠道，完成 25 份 B2B 合同，AAA 信用、零负债</li><li>董事会财务报告：发现仓储溢出费 587 万澳元，占净利润 41%</li><li>拆解衰退期 ROA 下滑四大主因，提出 9 项改进建议</li></ul><div class="tags"><span class="tag">财务分析</span><span class="tag">经营决策</span><span class="tag">团队领导</span></div></div></article>
+        <article class="card"><div class="shot" style="background:#f5b700">🍋 供应链<span>蜜雪冰城柠檬供应链分析</span></div><div class="meta"><div class="role">个人论文 · 蒙纳士全球供应链管理课程 · 2026.10</div><h4>极端天气下的柠檬供应链与纵向整合</h4><ul><li>结合 USDA 产量预测与蜜雪集团港股招股书分析供应冲击</li><li>评估向上游种植延伸对供应稳定和成本的作用</li></ul><div class="tags"><span class="tag">供应链</span><span class="tag">行业研究</span></div></div></article>
+        <article class="card"><div class="shot" style="background:#6366f1">GDP 1970–2019<span>马来西亚经济增长影响因素</span></div><div class="meta"><div class="role">小组项目 · 泰莱大学应用计量经济学课程 · 2025.09–2026.01</div><h4>用 EViews 建 OLS 模型检验增长因素</h4><ul><li>基于世界银行数据，检验信贷、投资、通胀、人力资本和亚洲金融危机的影响</li><li>负责研究设计与问题陈述，做数据检查和多重共线性诊断</li></ul><div class="tags"><span class="tag">计量经济学</span><span class="tag">EViews</span></div></div></article>
+        <article class="card"><div class="shot" style="background:#10b981">RM 1<span>NatureNib 可食用冰棍棒创业</span></div><div class="meta"><div class="role">小组组长 · 泰莱大学创业加速器课程 · 2025.04–2026.01</div><h4>课程路演“最佳创意奖”</h4><ul><li>对比 3 个竞品定位与定价（RM 0.03–2），产品定价 RM 1</li><li>组织每周进度同步，两轮配方迭代解决成型偏软问题</li></ul><div class="tags"><span class="tag">商业计划</span><span class="tag">定价</span><span class="tag">项目管理</span></div></div></article>
       </div>
       <div class="deck-nav"><button id="prev" aria-label="上一个">←</button><div class="dots" id="dots"></div><button id="next" aria-label="下一个">→</button></div>
     </div>
@@ -268,9 +289,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="panel-head"><div><div class="k">Skills</div><h2 id="t-skills">技能</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
     <div class="panel-body">
       <div class="skills">
-        <div class="skill-group"><h4>专业技能</h4><div class="chips"><span>技能一</span><span>技能二</span><span>技能三</span></div></div>
-        <div class="skill-group"><h4>工具软件</h4><div class="chips"><span>工具一</span><span>工具二</span><span>工具三</span><span>工具四</span></div></div>
-        <div class="skill-group"><h4>语言 / 证书</h4><div class="chips"><span>语言</span><span>证书</span></div></div>
+        <div class="skill-group"><h4>数据分析</h4><div class="chips"><span>Excel 数据透视表</span><span>VLOOKUP / XLOOKUP</span><span>SUMIF 等条件函数</span><span>Excel 图表</span><span>EViews OLS 回归</span></div></div>
+        <div class="skill-group"><h4>商业与财务</h4><div class="chips"><span>财务报告诊断</span><span>报价与成本分析</span><span>供应链分析</span><span>计量经济学</span><span>公司金融</span><span>风险管理</span><span>流程改进</span></div></div>
+        <div class="skill-group"><h4>证书</h4><div class="chips"><span>Bloomberg Market Concepts</span><span>Bloomberg Finance Fundamentals</span><span>Bloomberg ESG</span></div></div>
+        <div class="skill-group"><h4>语言</h4><div class="chips"><span>中文 · 母语</span><span>英语 · 本硕全英文授课</span></div></div>
       </div>
     </div>
   </div>
@@ -282,9 +304,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="panel-head"><div><div class="k">Contact</div><h2 id="t-contact">联系我</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
     <div class="panel-body">
       <div class="contact">
-        <a href="mailto:you@example.com"><small>Email</small>you@example.com</a>
+        <a href="mailto:ryan12332190@gmail.com"><small>Email</small>ryan12332190@gmail.com</a>
         <a href="https://github.com/Ziyuan3123" target="_blank" rel="noopener"><small>GitHub</small>Ziyuan3123</a>
-        <div><small>WeChat</small>【占位】</div>
+        <div><small>正在找</small>商业分析实习 · 哈尔滨 · 可实习至 2027 年 2 月底</div>
       </div>
     </div>
   </div>
