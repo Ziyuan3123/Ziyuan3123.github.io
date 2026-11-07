@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&family=Gochi+Hand&family=ZCOOL+KuaiLe&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --cream:#fff5ee; --pink:#ff2d87; --pink-2:#ff6fae; --pink-soft:#ffd3e6; --ink:#1a1014;
+  --cream:#f4faff; --pink:#0a9ae6; --pink-2:#5cc8f5; --pink-soft:#d6f0ff; --ink:#1a1014;
   --yellow:#ffd84d; --blue:#3b82f6; --muted:#6b5560; --paper:#ffffff;
   --hand:"Gochi Hand","ZCOOL KuaiLe",cursive; --cn:"ZCOOL KuaiLe","Noto Sans SC",sans-serif;
   --body:"Noto Sans SC",system-ui,sans-serif;
@@ -144,13 +144,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
       <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .18 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
     </defs>
     <g filter="url(#rough)">
-      <path fill="#ff6fae" d="M-40 610 C 180 520 360 650 560 580 S 900 470 1120 560 S 1400 520 1500 470 L1500 940 L-40 940Z"/>
-      <path fill="#ff2d87" d="M-40 720 C 220 640 420 760 700 690 S 1150 640 1500 700 L1500 940 L-40 940Z"/>
-      <path fill="#ff2d87" d="M1040 -40 C 1120 60 1260 40 1300 150 S 1420 210 1500 180 L1500 -40Z"/>
-      <path fill="#ffd3e6" d="M-40 -40 L 520 -40 C 470 60 300 40 200 120 S 40 160 -40 230Z"/>
+      <path fill="#5cc8f5" d="M-40 610 C 180 520 360 650 560 580 S 900 470 1120 560 S 1400 520 1500 470 L1500 940 L-40 940Z"/>
+      <path fill="#0a9ae6" d="M-40 720 C 220 640 420 760 700 690 S 1150 640 1500 700 L1500 940 L-40 940Z"/>
+      <path fill="#0a9ae6" d="M1040 -40 C 1120 60 1260 40 1300 150 S 1420 210 1500 180 L1500 -40Z"/>
+      <path fill="#d6f0ff" d="M-40 -40 L 520 -40 C 470 60 300 40 200 120 S 40 160 -40 230Z"/>
       <ellipse fill="#ffd84d" cx="1080" cy="380" rx="120" ry="112"/>
     </g>
-    <g fill="#ff2d87" opacity=".85">
+    <g fill="#0a9ae6" opacity=".85">
       <circle cx="980" cy="250" r="7"/><circle cx="1010" cy="226" r="4"/><circle cx="380" cy="470" r="6"/><circle cx="350" cy="500" r="3"/>
       <circle cx="1240" cy="420" r="5"/><circle cx="150" cy="420" r="8"/><circle cx="700" cy="140" r="5"/>
     </g>
@@ -170,8 +170,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <button class="sticker s-resume" data-open="resume" aria-label="打开简历">
     <svg viewBox="0 0 160 170"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
       <path d="M22 12 L118 8 L140 30 L144 160 L20 164 Z" fill="#fff"/>
-      <path d="M118 8 L120 32 L140 30" fill="#ffd3e6"/>
-      <rect x="40" y="36" width="44" height="52" rx="6" fill="#ffd3e6"/>
+      <path d="M118 8 L120 32 L140 30" fill="#d6f0ff"/>
+      <rect x="40" y="36" width="44" height="52" rx="6" fill="#d6f0ff"/>
       <circle cx="62" cy="56" r="10" fill="#fff"/><path d="M46 86 c4 -14 28 -14 32 0" fill="#fff"/>
       <path d="M96 46 h28 M96 60 h22 M38 108 h86 M38 124 h70 M38 140 h80" fill="none"/>
       <path d="M8 40 l0 18 M-1 49 l18 0" fill="none"/>
@@ -184,10 +184,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <svg viewBox="0 0 220 150"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
       <path d="M46 118 C10 118 10 72 44 70 C40 34 92 22 108 50 C122 20 176 26 172 66 C206 64 212 116 176 118 Z" fill="#fff"/>
       <path d="M150 20 l7 15 16 2 -12 11 3 16 -14 -8 -14 8 3 -16 -12 -11 16 -2z" fill="#ffd84d"/>
-      <path d="M30 26 l4 9 10 1 -7 7 2 10 -9 -5 -9 5 2 -10 -7 -7 10 -1z" fill="#ff6fae"/>
+      <path d="M30 26 l4 9 10 1 -7 7 2 10 -9 -5 -9 5 2 -10 -7 -7 10 -1z" fill="#5cc8f5"/>
       <path d="M190 128 l0 16 M182 136 l16 0" fill="none"/>
     </g>
-    <text x="108" y="100" text-anchor="middle" font-family="Gochi Hand, cursive" font-size="34" fill="#ff2d87">Skills</text></svg>
+    <text x="108" y="100" text-anchor="middle" font-family="Gochi Hand, cursive" font-size="34" fill="#0a9ae6">Skills</text></svg>
     <span class="lbl">Skills<i>技能</i></span>
   </button>
 
@@ -195,9 +195,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <button class="sticker s-works" data-open="works" aria-label="打开作品">
     <svg viewBox="0 0 260 170"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
       <path d="M50 14 L210 8 L216 118 L44 124 Z" fill="#fff"/>
-      <path d="M62 26 L198 22 L202 106 L58 110 Z" fill="#ff6fae"/>
+      <path d="M62 26 L198 22 L202 106 L58 110 Z" fill="#5cc8f5"/>
       <path d="M116 46 L152 66 L118 86 Z" fill="#fff"/>
-      <path d="M16 128 L244 120 L232 154 L28 160 Z" fill="#ffd3e6"/>
+      <path d="M16 128 L244 120 L232 154 L28 160 Z" fill="#d6f0ff"/>
       <path d="M104 140 h52" fill="none"/>
       <path d="M232 20 l0 20 M222 30 l20 0" fill="none"/>
     </g></svg>
@@ -208,9 +208,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   <button class="sticker s-contact" data-open="contact" aria-label="打开联系方式">
     <svg viewBox="0 0 180 140"><g stroke="#1a1014" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
       <path d="M14 30 L166 22 L172 124 L18 132 Z" fill="#fff"/>
-      <path d="M14 30 L92 82 L166 22" fill="#ffd3e6"/>
+      <path d="M14 30 L92 82 L166 22" fill="#d6f0ff"/>
       <path d="M18 132 L72 76 M172 124 L114 72" fill="none"/>
-      <path d="M138 4 c6 -10 22 -6 18 8 c-2 8 -14 16 -18 20 c-4 -4 -16 -12 -18 -20 c-4 -14 12 -18 18 -8z" fill="#ff2d87"/>
+      <path d="M138 4 c6 -10 22 -6 18 8 c-2 8 -14 16 -18 20 c-4 -4 -16 -12 -18 -20 c-4 -14 12 -18 18 -8z" fill="#ff5a5f"/>
     </g></svg>
     <span class="lbl">Contact<i>联系</i></span>
   </button>
@@ -253,8 +253,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="panel-head"><div><div class="k">Works</div><h2 id="t-works">作品</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
     <div class="panel-body">
       <div class="deck" id="deck">
-        <article class="card"><div class="shot" style="background:#ff2d87">Project 01</div><div class="meta"><h4>项目名称一</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span><span class="tag">标签</span></div></div></article>
-        <article class="card"><div class="shot" style="background:#3b82f6">Project 02</div><div class="meta"><h4>项目名称二</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span></div></div></article>
+        <article class="card"><div class="shot" style="background:#0a9ae6">Project 01</div><div class="meta"><h4>项目名称一</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span><span class="tag">标签</span></div></div></article>
+        <article class="card"><div class="shot" style="background:#6366f1">Project 02</div><div class="meta"><h4>项目名称二</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span></div></div></article>
         <article class="card"><div class="shot" style="background:#f59e0b">Project 03</div><div class="meta"><h4>项目名称三</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span></div></div></article>
         <article class="card"><div class="shot" style="background:#10b981">Project 04</div><div class="meta"><h4>项目名称四</h4><p>【占位】一两句话：做了什么、你负责什么、结果如何。</p><div class="tags"><span class="tag">标签</span></div></div></article>
       </div>
