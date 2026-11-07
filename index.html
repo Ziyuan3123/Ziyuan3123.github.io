@@ -217,11 +217,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
   <!-- 形象位 -->
   <div class="ip" id="ip" aria-hidden="true">
-    <img id="ipImg" src="assets/ip.png" alt="" onload="document.getElementById('ipPh').remove()" onerror="this.remove()">
     <div class="ip-ph" id="ipPh">
       <div class="face" id="face"><span class="eye l"></span><span class="eye r"></span></div>
       <p>你的卡通形象<br>马上就位</p>
-      <small>MiniMax 生成中</small>
+      <small>加载中…</small>
     </div>
   </div>
 
@@ -318,21 +317,15 @@ deck.addEventListener('pointerdown',e=>sx=e.clientX);
 deck.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40){cur=(cur+(dx<0?1:cards.length-1))%cards.length;layout()}});
 layout();
 
-/* 形象跟随鼠标。
-   形象定稿后：把 oil-motion 生成的“360°转身”视频放进 #ip（<video id="ipVideo" muted playsinline preload="auto">），
-   这里会按鼠标相对形象的角度定位到对应帧；没有视频时先用占位脸的眼睛示意。 */
+/* 形象跟随鼠标：赛车手图集由 assets/racer/racer-follow.js 接管；图集加载前，占位脸的眼睛先跟着鼠标转。 */
 const ip=document.getElementById('ip'),face=document.getElementById('face');
-function lookAt(x,y){
-  const r=ip.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height*.3,dx=x-cx,dy=y-cy;
-  const v=document.getElementById('ipVideo');
-  if(v&&v.duration){let a=Math.atan2(dx,dy)*180/Math.PI;a=(a+360)%360;v.currentTime=a/360*v.duration;return;}
-  const img=document.getElementById('ipImg');
-  if(img&&img.complete&&img.naturalWidth){const t=Math.max(-1,Math.min(1,dx/600));img.style.transform=`rotate(${t*4}deg) skewX(${-t*3}deg)`;return;}
-  if(face){const m=Math.min(1,Math.hypot(dx,dy)/400),ang=Math.atan2(dy,dx);
-    face.querySelectorAll('.eye').forEach(e=>e.style.transform=`translate(${Math.cos(ang)*m*9}px,${Math.sin(ang)*m*7}px)`);
-    face.style.transform=`rotate(${Math.max(-12,Math.min(12,dx/40))}deg)`;}
-}
-let raf=0;addEventListener('pointermove',e=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>lookAt(e.clientX,e.clientY))});
+addEventListener('pointermove',e=>{
+  if(!face||!face.isConnected)return;
+  const r=ip.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.3);
+  const m=Math.min(1,Math.hypot(dx,dy)/400),ang=Math.atan2(dy,dx);
+  face.querySelectorAll('.eye').forEach(el=>el.style.transform=`translate(${Math.cos(ang)*m*9}px,${Math.sin(ang)*m*7}px)`);
+},{passive:true});
 </script>
+<script src="assets/racer/racer-follow.js" defer></script>
 </body>
 </html>
