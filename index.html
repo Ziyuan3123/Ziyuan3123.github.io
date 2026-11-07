@@ -115,8 +115,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .chips span:nth-child(3n+2){background:#fff3bf}
 
 /* 联系 */
-.contact{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px}
+.contact{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
 .contact a,.contact div{display:block;padding:18px;border:2.5px solid var(--ink);border-radius:16px;background:var(--cream);text-decoration:none;box-shadow:3px 3px 0 var(--ink);word-break:break-all}
+.contact .mail{grid-column:1/-1;white-space:nowrap;word-break:normal}
 .contact a:hover{background:var(--pink-soft)}
 .contact small{display:block;font-family:var(--hand);font-size:16px;color:var(--pink)}
 
@@ -320,7 +321,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
     <div class="panel-head"><div><div class="k">Contact</div><h2 id="t-contact">联系我</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
     <div class="panel-body">
       <div class="contact">
-        <a href="mailto:ryan12332190@gmail.com"><small>Email</small>ryan12332190@gmail.com</a>
+        <a class="mail" href="mailto:ryan12332190@gmail.com"><small>Email</small>ryan12332190@gmail.com</a>
         <a href="https://github.com/Ziyuan3123" target="_blank" rel="noopener"><small>GitHub</small>Ziyuan3123</a>
         <div><small>现在在做</small>系统提升数据分析技能 · 欢迎交流</div>
       </div>
