@@ -71,8 +71,10 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ip-ph .eye.l{left:30%}.ip-ph .eye.r{right:30%}
 .ip-ph p{font-size:clamp(14px,1.3vw,18px);line-height:1.4}
 .ip-ph small{font-family:var(--body);font-size:12px;color:var(--muted)}
-.lang{position:fixed;top:14px;right:14px;z-index:40;font:600 14px/1 var(--cn);padding:8px 14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--yellow);color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
+.lang{position:fixed;top:14px;right:14px;z-index:60;font:600 14px/1 var(--cn);padding:8px 14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--yellow);color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
 .lang:hover{background:#fff}
+/* 页面打开时挪到右下角，免得挡住关闭按钮 */
+body.sheet-open .lang{top:auto;bottom:14px}
 html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
 .hint{position:absolute;left:50%;bottom:calc(min(64vh,600px) + 6px);translate:-50% 0;font-family:var(--cn);font-size:14px;background:var(--ink);color:#fff;padding:4px 14px;border-radius:99px;white-space:nowrap}
 
@@ -220,7 +222,6 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
   </svg>
 
   <h1 class="title" data-en="WELCOME&lt;br&gt;TO MY &lt;span class=&quot;moon&quot;&gt;SPACE!&lt;/span&gt;&lt;small&gt;Hi, I&#x27;m Ziyuan · Digital Business master&#x27;s student · tap a sticker&lt;/small&gt;">WELCOME<br>TO MY <span class="moon">SPACE!</span><small>我是王子源 · 数字商业硕士在读 · 点贴纸看看我</small></h1>
-  <button class="lang" id="lang" aria-label="Switch language / 切换语言">EN</button>
   <div class="hint" data-en="Move your mouse, he&#x27;ll follow you 👀">移动鼠标，他会看向你 👀</div>
 
   <!-- 贴纸：简历 -->
@@ -283,6 +284,8 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
 
   <div class="sign">王子源 ✦ Ziyuan</div>
 </main>
+<!-- 中英切换放在最外层，打开简历等页面时也能点到 -->
+<button class="lang" id="lang" aria-label="Switch language / 切换语言">EN</button>
 
 <!-- 简历 -->
 <section class="sheet" id="resume" role="dialog" aria-modal="true" aria-labelledby="t-resume">
@@ -375,7 +378,7 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
 <script>
 /* 弹出页面：点贴纸打开，地址栏带 #resume 等也能直接打开 */
 const sheets=[...document.querySelectorAll('.sheet')];
-function openSheet(id){sheets.forEach(s=>s.classList.toggle('open',s.id===id));document.body.style.overflow=id?'hidden':'';
+function openSheet(id){sheets.forEach(s=>s.classList.toggle('open',s.id===id));document.body.style.overflow=id?'hidden':'';document.body.classList.toggle('sheet-open',!!id);
   const s=document.getElementById(id);if(s)s.querySelector('.x').focus();
   document.dispatchEvent(new CustomEvent('sheet',{detail:id}));}
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{history.replaceState(null,'','#'+b.dataset.open);openSheet(b.dataset.open)});
