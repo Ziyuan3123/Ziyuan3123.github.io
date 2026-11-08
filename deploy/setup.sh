@@ -2,7 +2,7 @@
 # 在腾讯云轻量服务器（Ubuntu）上一键部署个人网站：
 #   装 nginx 和 git，从 GitHub 拉网站，每 5 分钟自动同步一次。
 # 用法（在服务器终端里）：
-#   curl -fsSL https://raw.githubusercontent.com/Ziyuan3123/Ziyuan3123.github.io/claude/project-thread-vxngjc/deploy/setup.sh | sudo bash
+#   curl -fsSL https://raw.githubusercontent.com/Ziyuan3123/Ziyuan3123.github.io/main/deploy/setup.sh | sudo bash
 set -euo pipefail
 
 REPO=https://github.com/Ziyuan3123/Ziyuan3123.github.io.git
