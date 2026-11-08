@@ -460,6 +460,17 @@ if(cover){
   cover.addEventListener('touchend',e=>{if(ty!==null&&ty-e.changedTouches[0].clientY>60)enterSite();ty=null},{passive:true});
 }
 
+/* 第一次打开“作品”：一群彩色光标把卡片一张张搭出来（build-crew，MIT，assets/js/build-crew.js）。
+   只播一次；系统设置“减少动态效果”时不播。 */
+document.addEventListener('sheet',e=>{
+  if(e.detail!=='works'||window.BuildCrew||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.querySelectorAll('#deck .card:not([hidden])').forEach(c=>c.setAttribute('data-build','pop'));
+  const s=document.createElement('script');s.src='assets/js/build-crew.js';
+  Object.assign(s.dataset,{agents:'6',speed:'1.1',delay:'550',safety:'12000',
+    names:'Excel,Python,SQL,Power BI,R,PPT',colors:'#0a9ae6,#ff5a5f,#16a34a,#ffb800,#6366f1,#ff7a1a'});
+  document.head.appendChild(s);
+});
+
 /* 作品卡片墙：筛选 + 看细节 */
 const all=[...document.querySelectorAll('#deck .card')];
 all.forEach(c=>{if(c.classList.contains('feat'))return;
