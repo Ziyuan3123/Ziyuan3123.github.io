@@ -46,7 +46,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* 贴纸 */
 .sticker{position:absolute;display:grid;justify-items:center;gap:2px;width:var(--w,180px);transform:rotate(var(--r,0deg));transition:transform .25s cubic-bezier(.3,1.6,.5,1);
-  filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(4px 6px 0 rgba(26,16,20,.18));animation:bob 4s ease-in-out infinite;animation-delay:var(--d,0s)}
+  animation:bob 4s ease-in-out infinite;animation-delay:var(--d,0s);will-change:transform}
+/* 白边阴影放在贴纸里面的内容上：贴纸上下浮动时只移动图层，不用每帧重算阴影（iPhone 更顺） */
+.sticker>*{filter:drop-shadow(3px 0 0 #fff) drop-shadow(-3px 0 0 #fff) drop-shadow(0 3px 0 #fff) drop-shadow(0 -3px 0 #fff) drop-shadow(4px 6px 0 rgba(26,16,20,.18))}
 .sticker:hover,.sticker:focus-visible{transform:rotate(calc(var(--r,0deg) * -1)) scale(1.1);outline:none;animation-play-state:paused}
 .sticker svg{width:100%;height:auto;overflow:visible}
 /* 窗口很矮（比如网页放大）时贴纸跟着缩小，签名先隐藏，免得互相压住 */
@@ -250,22 +252,16 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
 
 <main class="stage" id="stage">
   <!-- 玫红笔刷背景 -->
+  <!-- 背景：手绘波浪/太阳提前渲染成图片（以前是实时 SVG 滤镜，iPhone 上进场动画很卡） -->
   <svg class="paint" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <defs>
-      <filter id="rough" x="-10%" y="-10%" width="120%" height="120%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="3" seed="7"/>
-        <feDisplacementMap in="SourceGraphic" scale="38"/>
-      </filter>
-      <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .18 0"/><feComposite in2="SourceGraphic" operator="in"/></filter>
-    </defs>
-    <g filter="url(#rough)">
-      <path fill="#5cc8f5" d="M-40 610 C 180 520 360 650 560 580 S 900 470 1120 560 S 1400 520 1500 470 L1500 940 L-40 940Z"/>
-      <path fill="#0a9ae6" d="M-40 720 C 220 640 420 760 700 690 S 1150 640 1500 700 L1500 940 L-40 940Z"/>
-      <path fill="#0a9ae6" d="M1040 -40 C 1120 60 1260 40 1300 150 S 1420 210 1500 180 L1500 -40Z"/>
-      <path fill="#d6f0ff" d="M-40 -40 L 520 -40 C 470 60 300 40 200 120 S 40 160 -40 230Z"/>
-      <ellipse fill="#ffd84d" cx="1080" cy="380" rx="120" ry="112"/>
+    <defs><pattern id="grainTile" width="256" height="256" patternUnits="userSpaceOnUse"><image href="assets/bg/grain.webp" width="256" height="256"/></pattern></defs>
+    <g class="bg-layers">
+      <image class="bg-wave" href="assets/bg/w1.webp" width="1440" height="900"/>
+      <image class="bg-wave" href="assets/bg/w2.webp" width="1440" height="900"/>
+      <image class="bg-wave" href="assets/bg/top.webp" width="1440" height="900"/>
+      <image class="bg-sun" href="assets/bg/sun.webp" x="930" y="240" width="300" height="290"/>
     </g>
-    <rect width="1440" height="900" filter="url(#grain)" fill="#fff"/>
+    <rect width="1440" height="900" fill="url(#grainTile)"/>
   </svg>
   <svg class="paint paint-fx" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <g fill="#0a9ae6" opacity=".85">

@@ -22,8 +22,8 @@
 
   /* ---------- 入场动画 ---------- */
   function intro() {
-    var waves = paint.querySelectorAll('g[filter] path');
-    var sun = paint.querySelector('g[filter] ellipse');
+    var waves = paint.querySelectorAll('.bg-wave');
+    var sun = paint.querySelector('.bg-sun');
     var dots = document.querySelectorAll('.paint-fx g[opacity] circle');
     var marks = document.querySelectorAll('.paint-fx g[stroke] path');
 
