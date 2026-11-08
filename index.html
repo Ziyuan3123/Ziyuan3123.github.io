@@ -173,6 +173,40 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
   .panel-head{padding:14px 16px}
   .card .shot{font-size:30px}
 }
+/* ---------- 封面：打开网站先看到的正式一页，点“进入”后翻上去 ---------- */
+.cover{position:fixed;inset:0;z-index:55;background:var(--paper);display:grid;place-items:center;padding:40px 48px;overflow:auto}
+.cover::before{content:"";position:fixed;inset:14px;border:2px solid var(--ink);border-radius:20px;pointer-events:none}
+.cover[hidden]{display:none}
+.cv-in{position:relative;display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,.8fr);gap:48px;align-items:center;width:min(1120px,100%)}
+.cv-k{font-size:13px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--pink)}
+.cv-name{font-family:var(--body);font-weight:900;font-size:clamp(56px,8.4vw,116px);line-height:1;letter-spacing:.04em;margin-top:14px}
+.cv-name span{display:block;font-size:.3em;font-weight:500;letter-spacing:.06em;color:var(--muted);margin-top:14px}
+.cv-role{font-size:clamp(18px,1.9vw,24px);font-weight:700;margin-top:26px;line-height:1.5}
+.cv-sub{color:var(--muted);font-size:15px;margin-top:2px}
+.cv-stats{list-style:none;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:30px 0 34px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink)}
+.cv-stats li{padding:14px 16px 16px;border-left:1px solid #d5dde3}
+.cv-stats li:first-child{border-left:0;padding-left:0}
+.cv-stats b{display:block;font-size:clamp(26px,2.8vw,38px);font-weight:900;line-height:1.2;color:var(--pink)}
+.cv-stats span{display:block;font-size:13px;line-height:1.45;color:var(--muted);margin-top:4px}
+.cv-btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.cv-go,.cv-cv{font-size:16px;font-weight:700;padding:13px 26px;border-radius:99px;border:2px solid var(--ink)}
+.cv-go{background:var(--ink);color:#fff}
+.cv-go:hover{background:var(--pink);border-color:var(--pink)}
+.cv-cv:hover{background:var(--pink-soft)}
+.cv-mail{margin-top:22px;font-size:14px;color:var(--muted)}
+.cv-mail a{color:var(--ink)}
+.cv-pic{width:100%;height:auto;max-height:74vh;object-fit:contain;background:radial-gradient(closest-side,#d6f0ff 0 88%,transparent 90%) 50% 62%/100% 74% no-repeat}
+.gs-pre .cv-in{visibility:hidden}
+@media (max-width:820px){
+  .cover{padding:34px 24px;place-items:start center}
+  .cv-in{grid-template-columns:1fr;gap:0}
+  .cv-pic{position:absolute;right:0;top:22px;width:20%;max-width:68px;height:auto;background:none}
+  .cv-name{font-size:clamp(46px,14vw,72px)}
+  .cv-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cv-stats li:nth-child(3){border-left:0;padding-left:0}
+  .cv-stats li:nth-child(n+3){border-top:1px solid #d5dde3}
+}
+@media print{.cover{display:none}}
 @media (prefers-reduced-motion:reduce){.sticker{animation:none}*{transition:none!important}}
 /* 动效（assets/js/motion.js）接管时：贴纸和弹窗的位移交给 GSAP */
 .gs-pre .title,.gs-pre .sticker,.gs-pre .ip,.gs-pre .sign,.gs-pre .paint{visibility:hidden}
@@ -198,6 +232,26 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
 </style>
 </head>
 <body>
+<!-- 封面 -->
+<section class="cover" id="cover" aria-label="封面 Cover">
+  <div class="cv-in">
+    <div class="cv-text">
+      <p class="cv-k" data-en="Portfolio · 2026">个人作品集 · Portfolio 2026</p>
+      <p class="cv-name" data-en="Ziyuan Wang&lt;span&gt;王子源&lt;/span&gt;">王子源<span>Ziyuan Wang</span></p>
+      <p class="cv-role" data-en="Business Analysis · Master of Digital Business, Monash University (in progress)">商业分析方向 · 蒙纳士大学数字商业硕士在读</p>
+      <p class="cv-sub" data-en="Bachelor of Business (Hons) in Finance, Taylor&#x27;s University · Based in Harbin, China">泰莱大学金融学荣誉学士 · 城市：哈尔滨</p>
+      <ul class="cv-stats">
+        <li><b>601</b><span data-en="transactions audited, 6 exceptions found">笔交易审计核查，查出 6 项异常</span></li>
+        <li><b>80.5%</b><span data-en="ROA as team leader in a business simulation">ROA，经营模拟中担任组长</span></li>
+        <li><b>17</b><span data-en="BTC strategies backtested in my own app">种 BTC 策略，用自己做的软件回测</span></li>
+        <li><b>15</b><span data-en="projects in this portfolio">个项目作品，进去都能看到</span></li>
+      </ul>
+      <div class="cv-btns"><button class="cv-go" id="coverGo" data-en="Enter portfolio →">进入作品集 →</button><button class="cv-cv" id="coverCv" data-en="Go straight to resume">直接看简历</button></div>
+      <p class="cv-mail">Email · <a href="mailto:ryan12332190@gmail.com">ryan12332190@gmail.com</a></p>
+    </div>
+    <img class="cv-pic" src="assets/cover-racer.webp" alt="" width="436" height="800">
+  </div>
+</section>
 
 <main class="stage" id="stage">
   <!-- 玫红笔刷背景 -->
@@ -396,6 +450,22 @@ sheets.forEach(s=>s.onclick=e=>{if(e.target===s)closeAll()});
 addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
 if(location.hash)openSheet(location.hash.slice(1));
 document.getElementById('print').onclick=e=>{e.preventDefault();print()};
+
+/* 封面：点“进入”或往下滚，封面翻上去，再播首页动画；网址带 #resume 等时直接跳过封面 */
+const cover=document.getElementById('cover');
+function enterSite(then){
+  if(!cover||cover.dataset.gone)return;cover.dataset.gone='1';
+  const done=()=>{cover.hidden=true;document.dispatchEvent(new Event('cover:enter'));if(then)then();};
+  if(window.gsap&&!matchMedia('(prefers-reduced-motion: reduce)').matches)gsap.to(cover,{yPercent:-100,duration:.8,ease:'power3.inOut',onComplete:done});else done();
+}
+if(cover){
+  if(location.hash){cover.hidden=true;cover.dataset.gone='1';}
+  document.getElementById('coverGo').onclick=()=>enterSite();
+  document.getElementById('coverCv').onclick=()=>enterSite(()=>{history.replaceState(null,'','#resume');openSheet('resume');});
+  cover.addEventListener('wheel',e=>{if(e.deltaY>20)enterSite()},{passive:true});
+  let ty=null;cover.addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
+  cover.addEventListener('touchend',e=>{if(ty!==null&&ty-e.changedTouches[0].clientY>60)enterSite();ty=null},{passive:true});
+}
 
 /* 作品卡片墙：筛选 + 看细节 */
 const all=[...document.querySelectorAll('#deck .card')];

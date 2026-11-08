@@ -165,9 +165,19 @@
   function start() {
     if (started) return; started = true;
     if (window.avoidTitle) avoidTitle();
-    intro();
-    var open = document.querySelector('.sheet.open');
-    if (open) onSheet(open.id);
+    var cover = document.getElementById('cover');
+    function go() {
+      intro();
+      var open = document.querySelector('.sheet.open');
+      if (open) onSheet(open.id);
+    }
+    if (cover && !cover.dataset.gone) {
+      /* 封面还在：先让封面内容依次出现，点“进入”后再播首页动画 */
+      gsap.from(cover.querySelectorAll('.cv-text > *, .cv-stats li, .cv-pic'), { y: 24, autoAlpha: 0, duration: .6, ease: 'power2.out', stagger: .06 });
+      gsap.set([title, stickers, ip, '.sign', '.hint'], { autoAlpha: 0 });
+      root.classList.remove('gs-pre');
+      document.addEventListener('cover:enter', go, { once: true });
+    } else go();
   }
   if (document.fonts && document.fonts.ready) document.fonts.ready.then(start);
   setTimeout(start, 1500);
