@@ -1,10 +1,11 @@
 /* 赛车手 IP：头盔随鼠标左右转动（oil-motion 图集方案）
  * 用法：页面里放 <div id="ip"></div>，再引入本脚本。
- * 素材：racer-atlas.webp，37 帧，8 列；第 0 帧最左，第 18 帧正面，第 36 帧最右。
+ * 素材：racer-half.webp，只存正面到最右的 19 帧（5 列），向左转时左右镜像画出来，文件小一半。
+ * 页面先显示静态正面图 racer-front.webp，等整页加载完再下载图集，不抢首屏流量。
  */
 (function () {
-  var FRAMES = 37, COLS = 8, CW = 358, CH = 606, CENTER = 18;
-  var src = (document.currentScript && document.currentScript.src.replace(/[^/]*$/, '')) + 'racer-atlas.webp';
+  var FRAMES = 37, COLS = 5, CW = 358, CH = 606, CENTER = 18;
+  var src = (document.currentScript && document.currentScript.src.replace(/[^/]*$/, '')) + 'racer-half.webp';
 
   function mount(host) {
     var cv = document.createElement('canvas');
@@ -22,7 +23,11 @@
       if (i === drawn) return;
       drawn = i;
       ctx.clearRect(0, 0, CW, CH);
-      ctx.drawImage(img, (i % COLS) * CW, Math.floor(i / COLS) * CH, CW, CH, 0, 0, CW, CH);
+      var k = Math.abs(i - CENTER), flip = i < CENTER;
+      ctx.save();
+      if (flip) { ctx.translate(CW, 0); ctx.scale(-1, 1); }
+      ctx.drawImage(img, (k % COLS) * CW, Math.floor(k / COLS) * CH, CW, CH, 0, 0, CW, CH);
+      ctx.restore();
     }
     function tick() {
       cur += (target - cur) * 0.18;
@@ -49,7 +54,8 @@
       document.documentElement.addEventListener('pointerleave', home);
       window.addEventListener('blur', home);
     };
-    img.src = src;
+    if (document.readyState === 'complete') img.src = src;
+    else window.addEventListener('load', function () { img.src = src; });
   }
 
   function start() {

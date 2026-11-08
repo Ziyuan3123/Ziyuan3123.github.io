@@ -28,7 +28,7 @@ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){document.documentEle
   --cream:#f4faff; --pink:#0a9ae6; --pink-2:#5cc8f5; --pink-soft:#d6f0ff; --ink:#1a1014;
   --yellow:#ffd84d; --blue:#3b82f6; --muted:#6b5560; --paper:#ffffff;
   --hand:"Gochi Hand","ZCOOL KuaiLe",cursive; --cn:"ZCOOL KuaiLe","Noto Sans SC",sans-serif;
-  --body:"Noto Sans SC",system-ui,sans-serif;
+  --body:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans SC",system-ui,sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
@@ -38,7 +38,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 
 /* ---------- 首页舞台 ---------- */
 .stage{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;isolation:isolate}
-.paint{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.paint{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
 .title{position:absolute;left:5vw;top:6vh;font-family:"Rubik Doodle Shadow",var(--hand);font-size:clamp(40px,7.4vw,110px);line-height:.95;color:var(--ink);transform:rotate(-6deg);transform-origin:left top;letter-spacing:.01em}
 .title small{display:block;font-family:var(--cn);font-size:clamp(16px,1.7vw,24px);letter-spacing:.1em;margin:14px 0 0 6px;color:var(--ink)}
 .title .moon{color:var(--pink)}
@@ -65,12 +65,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .ip{position:absolute;left:50%;bottom:0;height:min(64vh,600px);translate:-50% 0;display:flex;align-items:flex-end;justify-content:center}
 .ip video,.ip img{height:100%;width:auto;display:block;transition:transform .2s ease-out;transform-origin:50% 100%}
 
-.ip-ph{height:100%;aspect-ratio:3/4.4;display:grid;place-items:center;align-content:center;gap:8px;border:3px dashed var(--ink);border-bottom:0;border-radius:48% 48% 0 0/34% 34% 0 0;background:rgba(255,255,255,.55);text-align:center;font-family:var(--cn);color:var(--ink)}
-.ip-ph .face{width:42%;aspect-ratio:1;border-radius:50%;border:3px solid var(--ink);background:var(--paper);position:relative;transition:transform .15s}
-.ip-ph .eye{position:absolute;top:44%;width:12%;aspect-ratio:1;border-radius:50%;background:var(--ink);transition:transform .1s}
-.ip-ph .eye.l{left:30%}.ip-ph .eye.r{right:30%}
-.ip-ph p{font-size:clamp(14px,1.3vw,18px);line-height:1.4}
-.ip-ph small{font-family:var(--body);font-size:12px;color:var(--muted)}
 .lang{position:fixed;top:14px;right:14px;z-index:60;font:600 14px/1 var(--cn);padding:8px 14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--yellow);color:var(--ink);box-shadow:2px 2px 0 var(--ink);cursor:pointer}
 .lang:hover{background:#fff}
 /* 页面打开时挪到右下角，免得挡住关闭按钮 */
@@ -115,6 +109,7 @@ html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
 .card .shot{height:150px;display:grid;place-items:center;align-content:center;text-align:center;font-family:"Rubik Doodle Shadow",var(--hand);font-size:clamp(28px,3.2vw,42px);line-height:1;color:#fff;border-bottom:3px solid var(--ink);padding:10px}
 .card .shot span{display:block;font-family:var(--cn);font-size:15px;margin-top:8px}
 .card .shot.img{background:#fff var(--img) var(--pos,center)/var(--fit,cover) no-repeat;place-items:end start;align-content:end;text-align:left;padding:10px}
+.sheet:not(.seen) .shot.img{background-image:none}
 .card .shot.img b{font-weight:400;background:var(--c);border:2.5px solid var(--ink);border-radius:12px;padding:5px 10px 6px;font-size:clamp(20px,3vw,26px);box-shadow:3px 3px 0 var(--ink)}
 .card .shot.img b span{font-size:12px;margin-top:4px}
 .card .role{font-size:13px;color:var(--pink);margin-bottom:4px}
@@ -270,6 +265,9 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
       <path fill="#d6f0ff" d="M-40 -40 L 520 -40 C 470 60 300 40 200 120 S 40 160 -40 230Z"/>
       <ellipse fill="#ffd84d" cx="1080" cy="380" rx="120" ry="112"/>
     </g>
+    <rect width="1440" height="900" filter="url(#grain)" fill="#fff"/>
+  </svg>
+  <svg class="paint paint-fx" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <g fill="#0a9ae6" opacity=".85">
       <circle cx="980" cy="250" r="7"/><circle cx="1010" cy="226" r="4"/><circle cx="380" cy="470" r="6"/><circle cx="350" cy="500" r="3"/>
       <circle cx="1240" cy="420" r="5"/><circle cx="150" cy="420" r="8"/><circle cx="700" cy="140" r="5"/>
@@ -280,7 +278,6 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
       <path d="M1350 330 c8 -20 16 -20 24 0 c-8 20 -16 20 -24 0z" fill="#ffd84d"/>
       <path d="M470 760 c8 -22 18 -22 26 0 c-8 22 -18 22 -26 0z" fill="#ffd84d"/>
     </g>
-    <rect width="1440" height="900" filter="url(#grain)" fill="#fff"/>
   </svg>
 
   <h1 class="title" data-en="WELCOME&lt;br&gt;TO MY &lt;span class=&quot;moon&quot;&gt;SPACE!&lt;/span&gt;&lt;small&gt;Hi, I&#x27;m Ziyuan · Digital Business master&#x27;s student · tap a sticker&lt;/small&gt;">WELCOME<br>TO MY <span class="moon">SPACE!</span><small>我是王子源 · 数字商业硕士在读 · 点贴纸看看我</small></h1>
@@ -337,11 +334,7 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
 
   <!-- 形象位 -->
   <div class="ip" id="ip" aria-hidden="true">
-    <div class="ip-ph" id="ipPh">
-      <div class="face" id="face"><span class="eye l"></span><span class="eye r"></span></div>
-      <p>你的卡通形象<br>马上就位</p>
-      <small>加载中…</small>
-    </div>
+    <img src="assets/racer/racer-front.webp" width="358" height="606" alt="" fetchpriority="high">
   </div>
 
   <div class="sign">王子源 ✦ Ziyuan</div>
@@ -440,7 +433,7 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
 <script>
 /* 弹出页面：点贴纸打开，地址栏带 #resume 等也能直接打开 */
 const sheets=[...document.querySelectorAll('.sheet')];
-function openSheet(id){sheets.forEach(s=>s.classList.toggle('open',s.id===id));document.body.style.overflow=id?'hidden':'';document.body.classList.toggle('sheet-open',!!id);
+function openSheet(id){if(id){const t=document.getElementById(id);if(t)t.classList.add('seen');}sheets.forEach(s=>s.classList.toggle('open',s.id===id));document.body.style.overflow=id?'hidden':'';document.body.classList.toggle('sheet-open',!!id);
   const s=document.getElementById(id);if(s)s.querySelector('.x').focus();
   document.dispatchEvent(new CustomEvent('sheet',{detail:id}));}
 document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{history.replaceState(null,'','#'+b.dataset.open);openSheet(b.dataset.open)});
@@ -466,6 +459,17 @@ if(cover){
   let ty=null;cover.addEventListener('touchstart',e=>ty=e.touches[0].clientY,{passive:true});
   cover.addEventListener('touchend',e=>{if(ty!==null&&ty-e.changedTouches[0].clientY>60)enterSite();ty=null},{passive:true});
 }
+
+/* 第一次打开“作品”：一群彩色光标把卡片一张张搭出来（build-crew，MIT，assets/js/build-crew.js）。
+   只播一次；系统设置“减少动态效果”时不播。 */
+document.addEventListener('sheet',e=>{
+  if(e.detail!=='works'||window.BuildCrew||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  document.querySelectorAll('#deck .card:not([hidden])').forEach(c=>c.setAttribute('data-build','pop'));
+  const s=document.createElement('script');s.src='assets/js/build-crew.js';
+  Object.assign(s.dataset,{agents:'4',speed:'0.6',delay:'550',safety:'20000',
+    names:'Excel,Python,SQL,Power BI,R,PPT',colors:'#0a9ae6,#ff5a5f,#16a34a,#ffb800,#6366f1,#ff7a1a'});
+  document.head.appendChild(s);
+});
 
 /* 作品卡片墙：筛选 + 看细节 */
 const all=[...document.querySelectorAll('#deck .card')];
@@ -493,14 +497,6 @@ function avoidTitle(){
 }
 avoidTitle();addEventListener('resize',avoidTitle);if(document.fonts)document.fonts.ready.then(avoidTitle);
 
-/* 形象跟随鼠标：赛车手图集由 assets/racer/racer-follow.js 接管；图集加载前，占位脸的眼睛先跟着鼠标转。 */
-const ip=document.getElementById('ip'),face=document.getElementById('face');
-addEventListener('pointermove',e=>{
-  if(!face||!face.isConnected)return;
-  const r=ip.getBoundingClientRect(),dx=e.clientX-(r.left+r.width/2),dy=e.clientY-(r.top+r.height*.3);
-  const m=Math.min(1,Math.hypot(dx,dy)/400),ang=Math.atan2(dy,dx);
-  face.querySelectorAll('.eye').forEach(el=>el.style.transform=`translate(${Math.cos(ang)*m*9}px,${Math.sin(ang)*m*7}px)`);
-},{passive:true});
 /* 中英切换：带 data-en 的元素切换内容；默认跟随浏览器语言，可用 ?lang=en 指定 */
 const langBtn=document.getElementById('lang');
 function setLang(l){
