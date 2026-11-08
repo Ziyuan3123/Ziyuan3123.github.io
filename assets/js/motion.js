@@ -24,8 +24,8 @@
   function intro() {
     var waves = paint.querySelectorAll('g[filter] path');
     var sun = paint.querySelector('g[filter] ellipse');
-    var dots = paint.querySelectorAll('g[opacity] circle');
-    var marks = paint.querySelectorAll('g[stroke] path');
+    var dots = document.querySelectorAll('.paint-fx g[opacity] circle');
+    var marks = document.querySelectorAll('.paint-fx g[stroke] path');
 
     var tl = gsap.timeline({ defaults: { ease: 'back.out(1.7)' } });
     tl.set([title, stickers, ip, '.sign', '.lang', '.hint'], { autoAlpha: 0 })
