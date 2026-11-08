@@ -129,6 +129,7 @@
     }
     function play() {
       playing = true; if (!box) build();
+      var tip = document.querySelector('.tap-tip'); if (tip) tip.classList.add('done');
       var W = stage.clientWidth, c = W / 2, d = box.ding, l = box.lele, h = box.hug;
       var dw = d.offsetWidth || 140, lw = l.offsetWidth || 180;
       gsap.set([d, l, h], { autoAlpha: 0, x: 0, y: 0, scaleX: 1, scale: 1 });
