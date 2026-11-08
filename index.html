@@ -180,6 +180,14 @@ html[lang=en] .card.feat::after{content:"★ Top pick"}
 .gs .sticker:active{cursor:grabbing}
 .gs .panel,.gs .sheet.open .panel{translate:none;transition:none}
 .rough-annotation{pointer-events:none}
+/* 彩蛋：丁丁和乐乐 */
+.ip{cursor:pointer}
+.egg{position:absolute;left:0;right:0;bottom:3vh;height:0;z-index:6;pointer-events:none}
+.egg img,.egg-heart{position:absolute;left:0;bottom:0;visibility:hidden;filter:drop-shadow(0 3px 0 rgba(26,16,20,.2))}
+.egg-d{height:min(22vh,170px)}
+.egg-l{height:min(23vh,180px)}
+.egg-h{height:min(30vh,240px)}
+.egg-heart{color:#ff5a5f;font-size:34px;line-height:1;filter:none}
 @media print{.rough-annotation{display:none}}
 @media print{
   .stage,.panel-head .x,.btn{display:none}

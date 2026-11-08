@@ -108,6 +108,58 @@
   document.addEventListener('lang', function () { if (openId === 'resume') setTimeout(annotate, 50); });
   addEventListener('resize', function () { if (openId === 'resume' && group) annotate(); });
 
+  /* ---------- 彩蛋：连点赛车手 5 次，丁丁和乐乐从两边跑出来抱一下 ---------- */
+  (function egg() {
+    var clicks = [], playing = false, box = null;
+    function img(src, cls) { var i = new Image(); i.src = 'assets/egg/' + src; i.alt = ''; i.className = cls; return i; }
+    function build() {
+      box = document.createElement('div'); box.className = 'egg'; box.setAttribute('aria-hidden', 'true');
+      box.ding = img('ding-run.webp', 'egg-d'); box.lele = img('lele-run.webp', 'egg-l'); box.hug = img('hug.webp', 'egg-h');
+      box.append(box.ding, box.lele, box.hug); stage.appendChild(box);
+    }
+    function hearts(x, y) {
+      for (var i = 0; i < 7; i++) {
+        var h = document.createElement('span'); h.className = 'egg-heart'; h.textContent = '❤';
+        box.appendChild(h);
+        gsap.fromTo(h, { x: x, y: y, scale: 0, autoAlpha: 1 },
+          { x: x + gsap.utils.random(-90, 90), y: y - gsap.utils.random(90, 190), scale: gsap.utils.random(.7, 1.4),
+            rotation: gsap.utils.random(-30, 30), duration: 1.8, ease: 'power1.out', delay: i * .08 });
+        gsap.to(h, { autoAlpha: 0, duration: .5, delay: 1.4 + i * .08, onComplete: h.remove.bind(h) });
+      }
+    }
+    function play() {
+      playing = true; if (!box) build();
+      var W = stage.clientWidth, c = W / 2, d = box.ding, l = box.lele, h = box.hug;
+      var dw = d.offsetWidth || 140, lw = l.offsetWidth || 180;
+      gsap.set([d, l, h], { autoAlpha: 0, x: 0, y: 0, scaleX: 1, scale: 1 });
+      var hop = { y: -18, duration: .14, ease: 'sine.out', yoyo: true, repeat: 7 };
+      gsap.timeline({ onComplete: function () { playing = false; } })
+        .set(d, { autoAlpha: 1, x: -dw - 20 })
+        .set(l, { autoAlpha: 1, x: W + 20, scaleX: -1 })
+        .to(d, { x: c - dw - 10, duration: 1.1, ease: 'power1.inOut' }, 0)
+        .to(d, hop, 0)
+        .to(l, { x: c - 20, duration: 1.1, ease: 'power1.inOut' }, 0)
+        .to(l, hop, 0)
+        .set([d, l], { autoAlpha: 0 })
+        .set(h, { autoAlpha: 1, x: c - (h.offsetWidth || 200) / 2 })
+        .from(h, { scale: .6, duration: .5, ease: 'back.out(3)', transformOrigin: '50% 100%' })
+        .call(function () { hearts(c - 10, -(h.offsetHeight || 200) * .7); }, null, '<')
+        .to(h, { rotation: 4, duration: .25, yoyo: true, repeat: 3, ease: 'sine.inOut', transformOrigin: '50% 100%' })
+        .to(h, { autoAlpha: 0, duration: .15 }, '+=.4')
+        .set(d, { autoAlpha: 1, x: c - dw - 10, y: 0 })
+        .set(l, { autoAlpha: 1, x: c - 20, y: 0, scaleX: 1 })
+        .to([d, l], { x: '+=' + (W / 2 + 260), duration: 1, ease: 'power2.in' })
+        .to([d, l], { y: -14, duration: .12, yoyo: true, repeat: 7, ease: 'sine.out' }, '<')
+        .set([d, l], { autoAlpha: 0 });
+    }
+    ip.addEventListener('click', function () {
+      if (playing) return;
+      var now = Date.now(); clicks = clicks.filter(function (t) { return now - t < 1800; }); clicks.push(now);
+      gsap.fromTo(ip, { scaleY: .95 }, { scaleY: 1, duration: .35, ease: 'elastic.out(1,.4)', transformOrigin: '50% 100%' });
+      if (clicks.length >= 5) { clicks = []; play(); }
+    });
+  })();
+
   /* 字体加载完再开始，避免动到一半字体突然变样 */
   var started = false;
   function start() {
