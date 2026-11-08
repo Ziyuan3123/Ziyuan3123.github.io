@@ -105,30 +105,36 @@ html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
 .tl-item .note{font-size:14px;color:var(--muted);margin-top:4px}
 .award{display:inline-block;margin-top:6px;font-size:13px;padding:1px 10px;border:2px solid var(--ink);border-radius:99px;background:var(--yellow)}
 
-/* 作品：叠放卡片轮播 */
-.deck{position:relative;height:clamp(460px,54vw,500px);margin:6px 0 10px}
-.card{position:absolute;left:50%;top:0;width:min(560px,86%);height:100%;translate:-50% 0;border:3px solid var(--ink);border-radius:18px;background:var(--paper);overflow:hidden;display:grid;grid-template-rows:minmax(110px,1fr) auto;transition:transform .45s cubic-bezier(.3,1.2,.5,1),opacity .3s,filter .3s;box-shadow:5px 5px 0 var(--ink)}
-.card .shot{display:grid;place-items:center;align-content:center;text-align:center;font-family:"Rubik Doodle Shadow",var(--hand);font-size:clamp(34px,6vw,54px);line-height:1;color:#fff;border-bottom:3px solid var(--ink);padding:10px}
+/* 作品：卡片墙。前 3 张是重点作品，直接展开；其余点“看细节”展开 */
+.deck{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start;margin:6px 0 10px}
+.card{position:relative;border:3px solid var(--ink);border-radius:18px;background:var(--paper);overflow:hidden;display:grid;grid-template-rows:auto auto;box-shadow:4px 4px 0 var(--ink);transition:translate .2s,box-shadow .2s}
+.card:hover{translate:-2px -2px;box-shadow:6px 6px 0 var(--ink)}
+.card[hidden]{display:none}
+.card .shot{height:150px;display:grid;place-items:center;align-content:center;text-align:center;font-family:"Rubik Doodle Shadow",var(--hand);font-size:clamp(28px,3.2vw,42px);line-height:1;color:#fff;border-bottom:3px solid var(--ink);padding:10px}
 .card .shot span{display:block;font-family:var(--cn);font-size:15px;margin-top:8px}
 .card .shot.img{background:#fff var(--img) var(--pos,center)/var(--fit,cover) no-repeat;place-items:end start;align-content:end;text-align:left;padding:10px}
 .card .shot.img b{font-weight:400;background:var(--c);border:2.5px solid var(--ink);border-radius:12px;padding:5px 10px 6px;font-size:clamp(20px,3vw,26px);box-shadow:3px 3px 0 var(--ink)}
 .card .shot.img b span{font-size:12px;margin-top:4px}
 .card .role{font-size:13px;color:var(--pink);margin-bottom:4px}
-.card ul{padding-left:18px;font-size:14px;color:var(--muted)}
+.card ul{padding-left:18px;font-size:14px;color:var(--muted);margin-top:6px}
+.card:not(.feat):not(.open) ul{display:none}
+.card h4{line-height:1.45}
+.card.feat{border-color:var(--ink);box-shadow:5px 5px 0 var(--pink)}
+.card.feat .shot{height:170px}
+.card.feat::after{content:"★ 重点";position:absolute;top:10px;right:10px;z-index:1;font:700 13px/1 var(--cn);padding:5px 10px;border:2.5px solid var(--ink);border-radius:99px;background:var(--yellow);box-shadow:2px 2px 0 var(--ink)}
+html[lang=en] .card.feat::after{content:"★ Top pick"}
+.card .more{margin-top:10px;font-size:13px;font-weight:700;color:var(--pink);padding:0}
+.card .more:hover{text-decoration:underline}
+.card.feat .more{display:none}
+.works-tip{text-align:center;font-size:14px;color:var(--muted);margin:-8px 0 16px}
 .card .meta{padding:14px 18px}
-.card h4{font-size:18px}
+.card h4{font-size:17px}
 .card p{font-size:14px;color:var(--muted)}
 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 .tag{font-size:12px;padding:1px 10px;border:2px solid var(--ink);border-radius:99px;background:var(--pink-soft)}
 .filters{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:18px}
 .filters button{padding:4px 14px;border:2.5px solid var(--ink);border-radius:99px;background:var(--paper);font-size:14px}
 .filters button.on{background:var(--yellow);box-shadow:2px 2px 0 var(--ink)}
-.deck-nav{display:flex;justify-content:center;align-items:center;gap:14px;margin-top:22px}
-.deck-nav button{width:46px;height:46px;border-radius:50%;border:3px solid var(--ink);background:var(--paper);font-size:20px;box-shadow:2px 2px 0 var(--ink)}
-.deck-nav button:hover{background:var(--yellow)}
-.dots{display:flex;gap:8px}
-.dots span{width:10px;height:10px;border-radius:50%;border:2px solid var(--ink);background:var(--paper)}
-.dots span.on{background:var(--pink)}
 
 /* 技能 */
 .skills{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
@@ -147,7 +153,9 @@ html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
 .contact small{display:block;font-family:var(--hand);font-size:16px;color:var(--pink)}
 
 /* ---------- 手机 ---------- */
+@media (max-width:900px){.deck{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:720px){
+  .deck{grid-template-columns:1fr;gap:14px}
   .title{left:16px;top:28px}
   .title small{font-size:14px;letter-spacing:.04em;max-width:300px}
   .hint{display:none}
@@ -161,9 +169,6 @@ html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
   .tl-item{grid-template-columns:1fr;gap:2px}
   .panel-body{padding:22px 16px 30px}
   .panel-head{padding:14px 16px}
-  .deck{height:600px}
-  html[lang=en] .deck{height:710px}
-  .card{grid-template-rows:150px auto}
   .card .shot{font-size:30px}
 }
 @media (prefers-reduced-motion:reduce){.sticker{animation:none}*{transition:none!important}}
@@ -315,9 +320,11 @@ html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
     <div class="panel-head"><div><div class="k">Works</div><h2 id="t-works" data-en="Projects">作品</h2></div><button class="x" data-close aria-label="关闭">✕</button></div>
     <div class="panel-body">
       <div class="filters" id="filters"><button class="on" data-f="all" data-en="All 15">全部 15</button><button data-f="m" data-en="Master&#x27;s · Monash">研究生 · 蒙纳士</button><button data-f="u" data-en="Bachelor&#x27;s · Taylor&#x27;s">本科 · 泰莱</button><button data-f="c" data-en="AI &amp; Tools">AI 与工具</button></div>
+      <p class="works-tip" data-en="★ Top picks first · tap any card for details">★ 标出的是重点作品 · 其他卡片点“看细节”展开</p>
       <div class="deck" id="deck">
-        <article class="card" data-g="m"><div class="shot img" style="--c:#0a9ae6;--img:url(assets/works/audit.webp);--pos:left top;--fit:cover"><b data-en="6 exceptions&lt;span&gt;Carbon-credit audit memo&lt;/span&gt;">6 项异常<span>碳信用交易审计备忘录</span></b></div><div class="meta"><div class="role" data-en="Monash · Digital Accounting · 2026.10">蒙纳士数字会计课程 · 2026.10</div><h4 data-en="Reviewed 601 transactions and 2,401 journal lines">审查 601 笔交易、2,401 条分录</h4><ul><li data-en="Checked block links, transfer amounts, journal balance, manual entries, holdings and retirement uniqueness">逐项核对区块链接、转账金额、分录平衡、手工分录、持有余额和注销唯一性</li><li data-en="Found 6 exceptions (broken links, wrong amounts, over-transfers, duplicate retirements) worth about MYR 1.02M">识别断链、金额错误、超额转让、重复注销等 6 项异常，直接涉及金额约 MYR 102 万</li><li data-en="Used PivotTables, COUNTIF and balance recalculation; proposed 5 controls with formula prototypes">用数据透视表、COUNTIF 和余额重算完成检查，提出 5 类控制建议并做了公式原型</li></ul><div class="tags"><span class="tag" data-en="Excel audit">Excel 审计</span><span class="tag" data-en="Data validation">数据核查</span><span class="tag" data-en="Internal control">内部控制</span></div></div></article>
-        <article class="card" data-g="m"><div class="shot img" style="--c:#38bdf8;--img:url(assets/works/monsoon.webp);--pos:center top;--fit:cover"><b data-en="ROA 80.5%&lt;span&gt;MonsoonSIM business simulation&lt;/span&gt;">ROA 80.5%<span>MonsoonSIM 企业经营模拟</span></b></div><div class="meta"><div class="role" data-en="Team leader (5) · Finance lead · Monash · Digital Accounting · 2026.09–10">5 人小组组长 · 负责财务 · 蒙纳士数字会计课程 · 2026.09–10</div><h4 data-en="AUD 55.9M revenue, AUD 14.4M net profit">收入 5,590 万澳元，净利润 1,440 万澳元</h4><ul><li data-en="Premium retail plus large B2B orders: 25 B2B contracts, AAA credit, zero debt">“高价零售 + B2B 大单”双渠道，完成 25 份 B2B 合同，AAA 信用、零负债</li><li data-en="Board report: found AUD 5.87M in warehouse overflow fees, 41% of net profit">董事会财务报告：发现仓储溢出费 587 万澳元，占净利润 41%</li><li data-en="Broke down four drivers of the recession-period ROA drop and made 9 recommendations">拆解衰退期 ROA 下滑四大主因，提出 9 项改进建议</li></ul><div class="tags"><span class="tag" data-en="Financial analysis">财务分析</span><span class="tag" data-en="Business decisions">经营决策</span><span class="tag" data-en="Leadership">团队领导</span></div></div></article>
+        <article class="card feat" data-g="m"><div class="shot img" style="--c:#0a9ae6;--img:url(assets/works/audit.webp);--pos:left top;--fit:cover"><b data-en="6 exceptions&lt;span&gt;Carbon-credit audit memo&lt;/span&gt;">6 项异常<span>碳信用交易审计备忘录</span></b></div><div class="meta"><div class="role" data-en="Monash · Digital Accounting · 2026.10">蒙纳士数字会计课程 · 2026.10</div><h4 data-en="Reviewed 601 transactions and 2,401 journal lines">审查 601 笔交易、2,401 条分录</h4><ul><li data-en="Checked block links, transfer amounts, journal balance, manual entries, holdings and retirement uniqueness">逐项核对区块链接、转账金额、分录平衡、手工分录、持有余额和注销唯一性</li><li data-en="Found 6 exceptions (broken links, wrong amounts, over-transfers, duplicate retirements) worth about MYR 1.02M">识别断链、金额错误、超额转让、重复注销等 6 项异常，直接涉及金额约 MYR 102 万</li><li data-en="Used PivotTables, COUNTIF and balance recalculation; proposed 5 controls with formula prototypes">用数据透视表、COUNTIF 和余额重算完成检查，提出 5 类控制建议并做了公式原型</li></ul><div class="tags"><span class="tag" data-en="Excel audit">Excel 审计</span><span class="tag" data-en="Data validation">数据核查</span><span class="tag" data-en="Internal control">内部控制</span></div></div></article>
+        <article class="card feat" data-g="m"><div class="shot img" style="--c:#38bdf8;--img:url(assets/works/monsoon.webp);--pos:center top;--fit:cover"><b data-en="ROA 80.5%&lt;span&gt;MonsoonSIM business simulation&lt;/span&gt;">ROA 80.5%<span>MonsoonSIM 企业经营模拟</span></b></div><div class="meta"><div class="role" data-en="Team leader (5) · Finance lead · Monash · Digital Accounting · 2026.09–10">5 人小组组长 · 负责财务 · 蒙纳士数字会计课程 · 2026.09–10</div><h4 data-en="AUD 55.9M revenue, AUD 14.4M net profit">收入 5,590 万澳元，净利润 1,440 万澳元</h4><ul><li data-en="Premium retail plus large B2B orders: 25 B2B contracts, AAA credit, zero debt">“高价零售 + B2B 大单”双渠道，完成 25 份 B2B 合同，AAA 信用、零负债</li><li data-en="Board report: found AUD 5.87M in warehouse overflow fees, 41% of net profit">董事会财务报告：发现仓储溢出费 587 万澳元，占净利润 41%</li><li data-en="Broke down four drivers of the recession-period ROA drop and made 9 recommendations">拆解衰退期 ROA 下滑四大主因，提出 9 项改进建议</li></ul><div class="tags"><span class="tag" data-en="Financial analysis">财务分析</span><span class="tag" data-en="Business decisions">经营决策</span><span class="tag" data-en="Leadership">团队领导</span></div></div></article>
+        <article class="card feat" data-g="c"><div class="shot img" style="--c:#16a34a;--img:url(assets/works/quant.webp);--pos:left top;--fit:cover"><b data-en="BTC&lt;span&gt;Quant assistant desktop app&lt;/span&gt;">BTC<span>量化助手 · 桌面软件</span></b></div><div class="meta"><div class="role" data-en="Personal project · built on open-source OpenTrading · 2026.10–11">个人项目 · 基于开源 OpenTrading 二次开发 · 2026.10–11</div><h4 data-en="Turned an open-source quant platform into a double-click Mac app">把开源量化平台改成双击就能用的 Mac 软件</h4><ul><li data-en="Packaged a standalone Mac app (incl. an Intel build for friends) with live A-share and BTC quotes">打包成独立 Mac App（另做 Intel 版给朋友用），加入 A 股盘中报价和 BTC 行情</li><li data-en="Compared 17 BTC strategies on data since 2017: the hourly MA rule traded ~2,470 times and fees ate its edge">用 2017 年以来的币安数据对比 17 种 BTC 策略，发现原小时线策略 8 年半交易约 2,470 次，手续费吃光了收益</li><li data-en="Strict go-live gates (out-of-sample Sharpe ≥ 0.5, drawdown ≤ 25%); failing strategies stay in simulation">设了严格的上线门槛（样本外夏普 ≥ 0.5、回撤 ≤ 25%、显著性检验），没通过就锁住实盘，只做模拟</li></ul><div class="tags"><span class="tag" data-en="Backtesting">量化回测</span><span class="tag" data-en="Python">Python</span><span class="tag" data-en="Risk control">风险控制</span></div></div></article>
         <article class="card" data-g="m"><div class="shot" style="background:#0e7490" data-en="−30% damage&lt;span&gt;Shanghai Zhenya supply-chain strategy&lt;/span&gt;">−30% 破损<span>上海震雅供应链战略分析</span></div><div class="meta"><div class="role" data-en="Group report · Monash · Global Supply Chain Mgmt · 2026.10">小组报告 · 蒙纳士全球供应链管理课程 · 2026.10</div><h4 data-en="Interviewed a real manufacturer to diagnose its project-based supply chain">访谈真实制造企业，诊断项目型供应链</h4><ul><li data-en="Mapped the full flow from demand and production to outsourced transport and installation">以项目经理访谈为基础，梳理从需求、生产、外协运输到安装验收的全流程</li><li data-en="Key idea: a shared Excel supplier-and-route scorecard instead of costly ERP, targeting −30% damage and −25% rework delays in 6 months">主建议：用共享 Excel 供应商-线路评分卡替代昂贵 ERP，目标 6 个月内破损事故 −30%、返工延误 −25%</li><li data-en="Plus pre-order capacity checks, a weekly priority list and bidding integrity rules">配套接单前产能确认、周优先级清单和投标廉洁规则</li></ul><div class="tags"><span class="tag" data-en="Supply chain">供应链</span><span class="tag" data-en="Interview">企业访谈</span><span class="tag" data-en="Process improvement">流程改进</span></div></div></article>
         <article class="card" data-g="m"><div class="shot" style="background:#6366f1" data-en="Aave V3&lt;span&gt;Ethereum lending protocol analysis&lt;/span&gt;">Aave V3<span>以太坊借贷协议分析</span></div><div class="meta"><div class="role" data-en="Team of 5 · My part: Singapore regulation &amp; conclusion · Monash · FinTech · 2026.09">5 人小组 · 本人负责新加坡监管与结论 · 蒙纳士金融科技课程 · 2026.09</div><h4 data-en="Is DeFi lending efficient enough to justify its risks?">DeFi 借贷的效率是否值得用户承担的风险？</h4><ul><li data-en="Compared Aave with Singapore bank loans on pricing, governance and risk">对比 Aave 与新加坡银行贷款的定价、治理与风险</li><li data-en="My part: mapped regulatory gaps under the Payment Services Act; regulation should target identifiable controllers">本人部分：按《支付服务法》梳理监管空白，指出监管应聚焦可识别的控制方</li><li data-en="Conclusion: Aave is a tool for expert self-custody users, not a substitute for regulated bank lending">结论：Aave 是专业、自管型借贷工具，不能替代受监管的银行贷款</li></ul><div class="tags"><span class="tag" data-en="FinTech">金融科技</span><span class="tag">DeFi</span><span class="tag" data-en="Regulatory analysis">监管分析</span></div></div></article>
         <article class="card" data-g="m"><div class="shot" style="background:#f5b700" data-en="🍋 Supply&lt;span&gt;Mixue lemon supply chain&lt;/span&gt;">🍋 供应链<span>蜜雪冰城柠檬供应链分析</span></div><div class="meta"><div class="role" data-en="Individual essay · Monash · Global Supply Chain Mgmt · 2026.10">个人论文 · 蒙纳士全球供应链管理课程 · 2026.10</div><h4 data-en="Extreme weather, lemon supply and vertical integration">极端天气下的柠檬供应链与纵向整合</h4><ul><li data-en="Analysed supply shocks using USDA forecasts and Mixue&#x27;s Hong Kong IPO prospectus">结合 USDA 产量预测与蜜雪集团港股招股书分析供应冲击</li><li data-en="Assessed how moving upstream into farming affects supply stability and cost">评估向上游种植延伸对供应稳定和成本的作用</li></ul><div class="tags"><span class="tag" data-en="Supply chain">供应链</span><span class="tag" data-en="Industry research">行业研究</span></div></div></article>
@@ -330,9 +337,8 @@ html[lang=en] .lbl i,html[lang=en] .panel-head .k{display:none}
         <article class="card" data-g="u"><div class="shot img" style="--c:#64748b;--img:url(assets/works/co2.webp);--pos:center;--fit:contain"><b data-en="CO₂&lt;span&gt;Drivers of China&#x27;s carbon emissions&lt;/span&gt;">CO₂<span>中国碳排放影响因素回归分析</span></b></div><div class="meta"><div class="role" data-en="Group work · My part: conclusion, policy and limitations · Taylor&#x27;s · Applied Econometrics · 2025.07">小组作业 · 本人负责结论、政策建议与局限 · 泰莱应用计量经济学 · 2025.07</div><h4 data-en="EViews OLS regression on 1994–2023 data">1994–2023 年数据，EViews OLS 回归</h4><ul><li data-en="Tested GDP, urbanisation rate, renewables share, vehicle ownership and urban population">检验 GDP、城镇化率、可再生能源占比、汽车保有量、城市人口对碳排放的影响</li><li data-en="Vehicles, GDP and urban population were significant, urbanisation rate was not; adjusted R² above 99%">汽车保有量、GDP、城市人口显著，城镇化率不显著；调整后 R² 超过 99%</li><li data-en="Ran unit-root, heteroskedasticity, serial-correlation and VIF tests, then wrote transport and energy-transition recommendations">做了单位根、异方差、序列相关和多重共线性检验，并据此写出交通减排和能源转型建议</li></ul><div class="tags"><span class="tag">EViews</span><span class="tag" data-en="Regression">回归分析</span><span class="tag" data-en="Policy">政策建议</span></div></div></article>
         <article class="card" data-g="c"><div class="shot img" style="--c:#ec4899;--img:url(assets/works/ai.webp);--pos:center top;--fit:contain"><b data-en="100 eps&lt;span&gt;AI short drama &amp; sticker IP&lt;/span&gt;">100 集<span>AI 短剧《丁总的小祖宗》与表情包</span></b></div><div class="meta"><div class="role" data-en="Personal project · Planning + AI production · 2026.10–11">个人项目 · 策划 + AI 制作 · 2026.10–11</div><h4 data-en="Turned my two dogs into an original IP, from stickers to a short drama">用自家两只狗做成原创 IP，从表情包做到短剧</h4><ul><li data-en="Wrote a 100-episode outline: four arcs, paywalls at episodes 10/25/50/75, and 5 reusable sets covering about 80% of episodes to keep production lean">写了 100 集短剧大纲：四个篇章、付费卡点设在第 10/25/50/75 集，5 个固定场景覆盖约 80% 集数，控制制作量</li><li data-en="Designed characters and sticker sets with AI (42 for the lead), plus two 16-piece animated sticker packs">用 AI 画出角色形象和成套表情（主角丁丁 42 张），另做了两套 16 张中文动图表情包</li><li data-en="Planned spin-off shots and prompts for Seedance video, and prepared copyright registration files">用即梦 Seedance 规划番外视频的分镜和提示词，并整理了角色版权登记材料</li></ul><div class="tags"><span class="tag" data-en="AI tools">AI 工具</span><span class="tag" data-en="Content planning">内容策划</span><span class="tag" data-en="IP design">IP 设计</span></div></div></article>
         <article class="card" data-g="c"><div class="shot img" style="--c:#f97316;--img:url(assets/works/clip.webp);--pos:left top;--fit:cover"><b data-en="AI clips&lt;span&gt;Live-stream auto-clipping tool&lt;/span&gt;">AI 切片<span>直播自动切片工具</span></b></div><div class="meta"><div class="role" data-en="Personal project · Python + AI · 2026.10">个人项目 · Python + AI · 2026.10</div><h4 data-en="A tool that records streams, finds the funny bits and cuts subtitled clips">自己做的直播切片工具：自动录播、找笑点、剪片、配字幕</h4><ul><li data-en="Records live streams in 5-minute segments and transcribes them locally with a hot-word list">开播后自动分段录制（每 5 分钟一段），本地语音识别转文字，用热词表提高人名和梗的识别准确率</li><li data-en="DeepSeek / Claude scores each moment; only 7/10+ gets cut, timed with loudness peaks">让 DeepSeek / Claude 给每段笑点打分，7 分以上才剪，再结合音量峰值定位，前后留几秒，避免话说一半</li><li data-en="Web review desk with one-key approve/reject that teaches the AI my taste; studied 10 popular Douyin clips">做了网页审核台：一键“同意 / 不要”，记录喜好让 AI 下次选片参考；还拆解了 10 条热门抖音切片的剪辑节奏</li></ul><div class="tags"><span class="tag" data-en="Python">Python</span><span class="tag" data-en="Applied AI">AI 应用</span><span class="tag" data-en="Content ops">内容运营</span></div></div></article>
-        <article class="card" data-g="c"><div class="shot img" style="--c:#16a34a;--img:url(assets/works/quant.webp);--pos:left top;--fit:cover"><b data-en="BTC&lt;span&gt;Quant assistant desktop app&lt;/span&gt;">BTC<span>量化助手 · 桌面软件</span></b></div><div class="meta"><div class="role" data-en="Personal project · built on open-source OpenTrading · 2026.10–11">个人项目 · 基于开源 OpenTrading 二次开发 · 2026.10–11</div><h4 data-en="Turned an open-source quant platform into a double-click Mac app">把开源量化平台改成双击就能用的 Mac 软件</h4><ul><li data-en="Packaged a standalone Mac app (incl. an Intel build for friends) with live A-share and BTC quotes">打包成独立 Mac App（另做 Intel 版给朋友用），加入 A 股盘中报价和 BTC 行情</li><li data-en="Compared 17 BTC strategies on data since 2017: the hourly MA rule traded ~2,470 times and fees ate its edge">用 2017 年以来的币安数据对比 17 种 BTC 策略，发现原小时线策略 8 年半交易约 2,470 次，手续费吃光了收益</li><li data-en="Strict go-live gates (out-of-sample Sharpe ≥ 0.5, drawdown ≤ 25%); failing strategies stay in simulation">设了严格的上线门槛（样本外夏普 ≥ 0.5、回撤 ≤ 25%、显著性检验），没通过就锁住实盘，只做模拟</li></ul><div class="tags"><span class="tag" data-en="Backtesting">量化回测</span><span class="tag" data-en="Python">Python</span><span class="tag" data-en="Risk control">风险控制</span></div></div></article>
       </div>
-      <div class="deck-nav"><button id="prev" aria-label="上一个">←</button><div class="dots" id="dots"></div><button id="next" aria-label="下一个">→</button></div>
+      
     </div>
   </div>
 </section>
@@ -380,24 +386,17 @@ addEventListener('keydown',e=>{if(e.key==='Escape')closeAll()});
 if(location.hash)openSheet(location.hash.slice(1));
 document.getElementById('print').onclick=e=>{e.preventDefault();print()};
 
-/* 作品叠卡 */
-const all=[...document.querySelectorAll('#deck .card')],dots=document.getElementById('dots');let cards=all,cur=0;
-function layout(){all.forEach(c=>{if(!cards.includes(c)){c.style.opacity=0;c.style.zIndex=0;c.style.pointerEvents='none';}});
-  cards.forEach((c,i)=>{const k=(i-cur+cards.length)%cards.length;c.style.pointerEvents='';
-  c.style.zIndex=cards.length-k;c.style.opacity=k>2?0:1;c.style.filter=k?'saturate(.6) brightness(.97)':'none';
-  c.style.transform=`translate(${k*26}px,${k*-14}px) rotate(${k?(k%2?4:-3):0}deg) scale(${1-k*.05})`;});
-  dots.innerHTML='';cards.forEach((_,i)=>{const d=document.createElement('span');if(i===cur)d.className='on';dots.appendChild(d)});}
-const step=n=>{cur=(cur+n+cards.length)%cards.length;layout()};
-document.getElementById('next').onclick=()=>step(1);
-document.getElementById('prev').onclick=()=>step(-1);
+/* 作品卡片墙：筛选 + 看细节 */
+const all=[...document.querySelectorAll('#deck .card')];
+all.forEach(c=>{if(c.classList.contains('feat'))return;
+  const m=document.createElement('button');m.className='more';m.type='button';
+  m.dataset.en='Details ▾';m.textContent='看细节 ▾';
+  m.onclick=()=>{const o=c.classList.toggle('open');m.dataset.zh=o?'收起 ▴':'看细节 ▾';m.dataset.en=o?'Hide ▴':'Details ▾';
+    m.textContent=document.documentElement.lang==='en'?m.dataset.en:m.dataset.zh;};
+  c.querySelector('.meta').appendChild(m);});
 document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('#filters button').forEach(x=>x.classList.toggle('on',x===b));
-  cards=b.dataset.f==='all'?all:all.filter(c=>c.dataset.g===b.dataset.f);cur=0;layout();});
-let sx=null;const deck=document.getElementById('deck');
-deck.addEventListener('pointerdown',e=>sx=e.clientX);
-deck.addEventListener('pointerup',e=>{if(sx===null)return;const dx=e.clientX-sx;sx=null;if(Math.abs(dx)>40)step(dx<0?1:-1)});
-addEventListener('keydown',e=>{if(!document.getElementById('works').classList.contains('open'))return;if(e.key==='ArrowRight')step(1);if(e.key==='ArrowLeft')step(-1)});
-layout();
+  all.forEach(c=>c.hidden=!(b.dataset.f==='all'||c.dataset.g===b.dataset.f));});
 
 /* 贴纸避开标题：网页放大或窗口变窄时，标题变高，压到标题的贴纸往下挪 */
 function avoidTitle(){

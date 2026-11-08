@@ -72,7 +72,7 @@
 
   /* ---------- 弹出页面：弹进来 + 内容依次出现 ---------- */
   var group = null, openId = null;
-  var pieces = '.intent>div,.h3,.tl-item,.chips>span,.skill-group,.contact>*,.filters,.deck,.deck-nav,.btn';
+  var pieces = '.intent>div,.h3,.tl-item,.chips>span,.skill-group,.contact>*,.filters,.works-tip,.card,.btn';
 
   function annotate() {
     if (group) { group.forEach(function (a) { a.remove(); }); group = null; }
