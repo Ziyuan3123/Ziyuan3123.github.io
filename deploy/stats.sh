@@ -16,12 +16,19 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
 apt-get install -y goaccess openssl
 
-# ---------- 设置密码 ----------
+# ---------- 设置密码（已经设过的话，直接回车就保留原密码） ----------
+HAVE=0; [ -f "$PASSFILE" ] && grep -q "^$USER_NAME:" "$PASSFILE" && HAVE=1
 if [ -z "${STATS_PASS:-}" ]; then
-  if [ -r /dev/tty ]; then
+  if ( : > /dev/tty ) 2>/dev/null; then
     while :; do
-      printf '请设置统计页密码（输入时不显示，至少 8 位）：' > /dev/tty
-      read -rs P1 < /dev/tty; echo > /dev/tty
+      if [ "$HAVE" = 1 ]; then printf '要改统计页密码就输入新密码，不改直接按回车：' > /dev/tty
+      else printf '请设置统计页密码（输入时不显示，至少 8 位）：' > /dev/tty; fi
+      if ! read -rs P1 < /dev/tty 2>/dev/null; then
+        [ "$HAVE" = 1 ] && { P1=; break; }
+        echo "没法读取密码输入，请用：STATS_PASS='你的密码' bash stats.sh" >&2; exit 1
+      fi
+      echo > /dev/tty
+      if [ -z "$P1" ] && [ "$HAVE" = 1 ]; then echo '密码不变。' > /dev/tty; break; fi
       printf '再输入一次：' > /dev/tty
       read -rs P2 < /dev/tty; echo > /dev/tty
       if [ "$P1" != "$P2" ]; then echo '两次不一样，再来一次。' > /dev/tty
@@ -29,15 +36,17 @@ if [ -z "${STATS_PASS:-}" ]; then
       else break; fi
     done
     STATS_PASS="$P1"
-  else
+  elif [ "$HAVE" = 0 ]; then
     echo "没法读取密码输入，请用：STATS_PASS='你的密码' bash stats.sh" >&2; exit 1
   fi
 fi
-HASH=$(printf '%s' "$STATS_PASS" | openssl passwd -6 -stdin)
-touch "$PASSFILE"
-grep -v "^$USER_NAME:" "$PASSFILE" > "$PASSFILE.tmp" || true
-echo "$USER_NAME:$HASH" >> "$PASSFILE.tmp"
-mv "$PASSFILE.tmp" "$PASSFILE"
+if [ -n "${STATS_PASS:-}" ]; then
+  HASH=$(printf '%s' "$STATS_PASS" | openssl passwd -6 -stdin)
+  touch "$PASSFILE"
+  grep -v "^$USER_NAME:" "$PASSFILE" > "$PASSFILE.tmp" || true
+  echo "$USER_NAME:$HASH" >> "$PASSFILE.tmp"
+  mv "$PASSFILE.tmp" "$PASSFILE"
+fi
 chown root:www-data "$PASSFILE"; chmod 640 "$PASSFILE"
 
 # ---------- IP 归属地数据库（免费版 DB-IP，按月更新；下载失败就不显示城市） ----------
@@ -59,14 +68,23 @@ chmod 755 /usr/local/bin/site-stats-geo
 mkdir -p "$OUT"
 cat > /usr/local/bin/site-stats <<'GEN'
 #!/usr/bin/env bash
-# 读全部访问日志（含已压缩的旧日志），去掉看统计页自己的记录，生成 /var/www/stats/index.html
+# 读全部访问日志（含已压缩的旧日志），生成 /var/www/stats/index.html。
+# 只算真人：去掉看统计页自己的记录、搜索引擎爬虫、不认识的程序，
+# 不是浏览器的程序，以及扫漏洞的机器人（只要某个 IP 访问过 .git/.env/wp-/php 这类网站根本没有的路径，它的所有记录都不算）。
 OUT=/var/www/stats
+TMP=$(mktemp); trap 'rm -f "$TMP"' EXIT
+zcat -f /var/log/nginx/access.log* 2>/dev/null | grep -v ' "GET /stats' > "$TMP"
+BAD='"[A-Z]+ [^"]*(\.git|\.env|wp-|\.php|cgi-bin|phpmyadmin|/admin|actuator|boaform|HNAP|/vendor/|\.\./)|\\x[0-9a-fA-F]{2}|"(POST|PUT|DELETE|CONNECT|OPTIONS|PROPFIND)'
+filtered() {
+  awk 'NR==FNR{bad[$1]=1;next} !($1 in bad)' <(grep -E "$BAD" "$TMP" | awk '{print $1}' | sort -u) "$TMP" \
+    | grep '"Mozilla/[^"]*"$'   # 真浏览器都以 Mozilla/ 开头；curl、python 这类程序去掉
+}
 run() {
-  zcat -f /var/log/nginx/access.log* 2>/dev/null \
-    | grep -v ' "GET /stats' \
-    | goaccess - --log-format=COMBINED --ignore-crawlers --real-os \
-        --html-report-title='wangziyuan.cn 访问统计' "$@" \
-        -o "$OUT/index.tmp.html" >/dev/null 2>&1
+  filtered | goaccess - --log-format=COMBINED --ignore-crawlers --unknowns-as-crawlers --real-os \
+      --ignore-status=400 --ignore-status=401 --ignore-status=403 --ignore-status=404 \
+      --ignore-status=405 --ignore-status=444 \
+      --html-report-title='wangziyuan.cn 访问统计（已去掉机器人）' "$@" \
+      -o "$OUT/index.tmp.html" >/dev/null 2>&1
 }
 DB=/var/lib/site-stats/city.mmdb
 { [ -s "$DB" ] && run --geoip-database="$DB"; } || run || exit 1
@@ -108,6 +126,6 @@ systemctl reload nginx
 echo
 echo "======================================"
 echo " 统计页已开通： https://wangziyuan.cn/stats/"
-echo " 用户名：$USER_NAME   密码：你刚才设的"
+echo " 用户名：$USER_NAME   密码：你设的那个"
 echo " 每 10 分钟自动更新一次"
 echo "======================================"
