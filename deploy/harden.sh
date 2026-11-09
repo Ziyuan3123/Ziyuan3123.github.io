@@ -18,7 +18,13 @@ APT::Periodic::Unattended-Upgrade "1";
 APT
 
 # ---------- 3. nginx ----------
-echo 'server_tokens off;' > /etc/nginx/conf.d/hide-version.conf
+# nginx.conf 里有的系统已经写了 server_tokens，就直接改成 off；没有才另外加
+if grep -Eq '^\s*server_tokens' /etc/nginx/nginx.conf; then
+  rm -f /etc/nginx/conf.d/hide-version.conf
+  sed -i -E 's/^(\s*)server_tokens\s+[a-z]+;/\1server_tokens off;/' /etc/nginx/nginx.conf
+else
+  echo 'server_tokens off;' > /etc/nginx/conf.d/hide-version.conf
+fi
 cat > /etc/nginx/snippets/block-scanners.conf <<'NGINX'
 # 网站是纯静态页面，没有这些东西；来找的都是扫漏洞的机器人，直接断开不回话
 location ~* (/\.(?!well-known)|\.php|wp-|cgi-bin|phpmyadmin|/actuator|/boaform|/HNAP1) { return 444; }
