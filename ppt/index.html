@@ -30,8 +30,8 @@ h2{font-size:clamp(20px,3vw,26px);line-height:1.3}
 .sub{color:var(--muted);font-size:14px;margin-top:2px}
 .meta{font-size:13px;color:var(--muted);white-space:nowrap}
 .cover{display:block;width:100%;border:0;padding:0;background:#ddd;border-radius:12px;overflow:hidden;cursor:zoom-in;position:relative;aspect-ratio:16/9}
-.cover img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-.cover:hover img{transform:scale(1.015)}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.cover:hover img.on{transform:scale(1.015)}
 .cover .hint{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:13px;padding:6px 12px;border-radius:999px;backdrop-filter:blur(6px)}
 .strip{display:flex;gap:10px;overflow-x:auto;padding:14px 2px 4px;scroll-snap-type:x proximity;scrollbar-width:thin}
 .strip button{flex:0 0 auto;width:168px;aspect-ratio:16/9;border:0;padding:0;border-radius:8px;overflow:hidden;cursor:zoom-in;background:#e5e7eb;scroll-snap-align:start;outline-offset:2px}
@@ -60,15 +60,27 @@ footer .home{font-size:13px}
   .prev{left:calc(50% - 60px)}.next{right:calc(50% - 60px)}
   .vbot{padding-bottom:calc(64px + env(safe-area-inset-bottom))}
 }
+/* motion */
+.rv{opacity:0;transform:translateY(26px);transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1);transition-delay:var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.cover img.layer{position:absolute;inset:0;opacity:0;transition:opacity .6s ease,transform .5s}
+.cover img.layer.on{opacity:1}
+.cover .pg{position:absolute;left:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;font-size:12px;padding:4px 10px;border-radius:999px;opacity:0;transition:opacity .3s;font-variant-numeric:tabular-nums}
+.cover.play .pg{opacity:1}
+.cover .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--accent);width:0}
+.cover.play .bar{transition:width .3s linear}
+.viewer.on .stage img{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.viewer.on .stage img{animation:none}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">PPT DESIGN PORTFOLIO</div>
-    <h1>PPT 设计作品集</h1>
-    <p class="lead">王子源 · 企业介绍、商业路演、课程课件、英文汇报。点任意一页可以全屏翻看。</p>
-    <div class="chips"><span class="chip">企业宣讲</span><span class="chip">融资 / 商业路演</span><span class="chip">课程课件</span><span class="chip">英文汇报</span></div>
+    <div class="eyebrow rv" style="--d:.05s">PPT DESIGN PORTFOLIO</div>
+    <h1 class="rv" style="--d:.15s">PPT 设计作品集</h1>
+    <p class="lead rv" style="--d:.28s">王子源 · 企业介绍、商业路演、课程课件、英文汇报。点任意一页可以全屏翻看。</p>
+    <div class="chips rv" style="--d:.4s"><span class="chip">企业宣讲</span><span class="chip">融资 / 商业路演</span><span class="chip">课程课件</span><span class="chip">英文汇报</span></div>
   </header>
   <main id="works"></main>
   <footer>
@@ -99,24 +111,45 @@ const pad=i=>String(i).padStart(2,'0');
 const src=(w,i,s)=>`img/${w.id}-${pad(i)}${s?'-s':''}.webp?v=2`;
 const box=document.getElementById('works');
 WORKS.forEach((w,k)=>{
-  const el=document.createElement('section');el.className='work';
+  const el=document.createElement('section');el.className='work rv';
   let thumbs='';
   for(let i=1;i<=w.n;i++)thumbs+=`<button data-w="${k}" data-i="${i}" aria-label="第 ${i} 页"><img src="${src(w,i,1)}" loading="lazy" decoding="async" alt="${w.title} 第 ${i} 页"></button>`;
   el.innerHTML=`<div class="head"><div><div class="num">${pad(k+1)}</div><h2>${w.title}</h2><div class="sub">${w.sub}</div></div><div class="meta">共 ${w.n} 页</div></div>
-  <button class="cover" data-w="${k}" data-i="${w.cover}" aria-label="全屏查看 ${w.title}"><img src="${src(w,w.cover)}" ${k?'loading="lazy"':''} decoding="async" alt="${w.title} 封面"><span class="hint">全屏翻看 ${w.n} 页 →</span></button>
+  <button class="cover" data-w="${k}" data-i="${w.cover}" aria-label="全屏查看 ${w.title}"><img class="layer on" src="${src(w,w.cover)}" ${k?'loading="lazy"':''} decoding="async" alt="${w.title} 封面"><img class="layer" alt="" aria-hidden="true"><span class="pg"></span><span class="bar"></span><span class="hint">全屏翻看 ${w.n} 页 →</span></button>
   <div class="strip">${thumbs}</div>`;
   box.appendChild(el);
 });
+
+/* motion: reveal on scroll */
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+/* cover autoplay: hover on desktop, in-view on touch */
+const HOVER=matchMedia('(hover: hover)').matches;
+document.querySelectorAll('.cover').forEach(c=>{
+  const k=+c.dataset.w,w=WORKS[k],L=c.querySelectorAll('img.layer'),pg=c.querySelector('.pg'),bar=c.querySelector('.bar');
+  const max=Math.min(w.n,8);let t=null,i=w.cover,a=0;
+  function step(){i=i%max+1;const nx=L[1-a];const im=new Image();im.src=src(w,i);
+    im.decode().catch(()=>{}).then(()=>{nx.src=im.src;nx.classList.add('on');L[a].classList.remove('on');a=1-a;c.dataset.i=i;pg.textContent=i+' / '+w.n;bar.style.width=(i/max*100)+'%';});}
+  function start(){if(t||RM)return;c.classList.add('play');pg.textContent=i+' / '+w.n;bar.style.width=(i/max*100)+'%';t=setInterval(step,1300);}
+  function stop(){clearInterval(t);t=null;c.classList.remove('play');}
+  function reset(){stop();if(i!==w.cover){i=w.cover;L[a].src=src(w,i);c.dataset.i=i;}bar.style.width='0';}
+  if(HOVER){c.addEventListener('mouseenter',start);c.addEventListener('mouseleave',reset);}
+  else new IntersectionObserver(es=>es.forEach(e=>e.intersectionRatio>=.6?start():stop()),{threshold:[0,.6]}).observe(c);
+});
 const V=document.getElementById('viewer'),img=document.getElementById('vimg'),cnt=document.getElementById('vcount'),ttl=document.getElementById('vtitle');
 let cw=0,ci=1;
-function show(){const w=WORKS[cw];img.src=src(w,ci);img.alt=`${w.title} 第 ${ci} 页`;ttl.textContent=w.title;cnt.textContent=`${ci} / ${w.n}`;
+let dir=0;
+function show(){const w=WORKS[cw];const u=src(w,ci);
+  if(dir&&!RM){const d=dir;const pre=new Image();pre.src=u;pre.decode().catch(()=>{}).then(()=>{img.src=u;img.animate([{transform:`translateX(${d*70}px)`,opacity:0},{transform:'none',opacity:1}],{duration:340,easing:'cubic-bezier(.2,.8,.2,1)'});});}
+  else img.src=u;dir=0;img.alt=`${w.title} 第 ${ci} 页`;ttl.textContent=w.title;cnt.textContent=`${ci} / ${w.n}`;
   [ci-1,ci+1].forEach(j=>{if(j>=1&&j<=w.n){const p=new Image();p.src=src(w,j);}});}
 function open(k,i){cw=k;ci=i;show();V.classList.add('on');document.body.style.overflow='hidden';}
 function close(){V.classList.remove('on');document.body.style.overflow='';}
-function go(d){const w=WORKS[cw];ci+=d;
+function go(d){const w=WORKS[cw];const o=cw+':'+ci;ci+=d;
   if(ci>w.n){if(cw<WORKS.length-1){cw++;ci=1;}else ci=w.n;}
   if(ci<1){if(cw>0){cw--;ci=WORKS[cw].n;}else ci=1;}
-  show();}
+  if(o===cw+':'+ci)return;dir=d;show();}
 box.addEventListener('click',e=>{const b=e.target.closest('[data-w]');if(b)open(+b.dataset.w,+b.dataset.i);});
 document.getElementById('vclose').onclick=close;
 document.getElementById('vprev').onclick=()=>go(-1);
