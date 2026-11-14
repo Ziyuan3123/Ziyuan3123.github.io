@@ -72,6 +72,20 @@ footer .home{font-size:13px}
 .viewer.on .stage img{animation:pop .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.viewer.on .stage img{animation:none}}
+@media (max-width:640px){
+  #works{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .work{margin:0;padding:8px;border-radius:12px;display:flex;flex-direction:column}
+  .head{margin-bottom:8px;flex-direction:column;gap:2px}
+  .head>div:first-child{order:1}
+  .num{font-size:11px}
+  h2{font-size:14px;line-height:1.35}
+  .sub{font-size:11px;line-height:1.4}
+  .meta{font-size:11px;order:2}
+  .cover{border-radius:8px;margin-top:auto}
+  .cover .hint{display:none}
+  .cover .pg{font-size:10px;padding:2px 6px;left:6px;bottom:6px}
+  .strip{display:none}
+}
 </style>
 </head>
 <body>
@@ -103,6 +117,7 @@ footer .home{font-size:13px}
 <script>
 const WORKS=[
   {id:'chuangping',n:23,title:'数据要素与可信数据空间 · 企业介绍',sub:'企业宣讲 PPT · 蓝白玻璃质感（客户信息已打码）',cover:1},
+  {id:'muou',n:15,title:'漳州木偶戏 · 非遗文化介绍',sub:'文化宣讲 PPT · 国潮复古',cover:1},
   {id:'ev',n:14,title:'驭电出海 · 新能源汽车全球化路演',sub:'商业路演 PPT · 深色电影感',cover:1},
   {id:'jiangshan',n:12,title:'千里江山图 · 艺术品鉴赏课',sub:'课程课件 · 国风青绿',cover:2},
   {id:'coffee',n:18,title:'Mellower Coffee 供应链案例分析',sub:'英文汇报 PPT · 手绘插画风',cover:1}
