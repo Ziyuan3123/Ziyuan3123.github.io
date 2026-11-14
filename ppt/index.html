@@ -7,7 +7,7 @@
 <meta name="description" content="王子源的 PPT 设计作品：企业介绍、商业路演、课程课件、英文汇报。">
 <meta property="og:title" content="PPT 设计作品集 · 王子源">
 <meta property="og:description" content="企业介绍 · 商业路演 · 课程课件 · 英文汇报">
-<meta property="og:image" content="https://wangziyuan.cn/ppt/og.jpg">
+<meta property="og:image" content="https://wangziyuan.cn/ppt/og.jpg?v=2">
 <meta property="og:url" content="https://wangziyuan.cn/ppt/">
 <meta name="theme-color" content="#f6f7f9">
 <style>
@@ -90,13 +90,13 @@ footer .home{font-size:13px}
 
 <script>
 const WORKS=[
-  {id:'chuangping',n:23,title:'创平科技 · 数据要素与可信数据空间',sub:'企业介绍 / 宣讲 PPT · 蓝白玻璃质感',cover:1},
+  {id:'chuangping',n:23,title:'数据要素与可信数据空间 · 企业介绍',sub:'企业宣讲 PPT · 蓝白玻璃质感（客户信息已打码）',cover:1},
   {id:'ev',n:14,title:'驭电出海 · 新能源汽车全球化路演',sub:'商业路演 PPT · 深色电影感',cover:1},
   {id:'jiangshan',n:12,title:'千里江山图 · 艺术品鉴赏课',sub:'课程课件 · 国风青绿',cover:2},
   {id:'coffee',n:18,title:'Mellower Coffee 供应链案例分析',sub:'英文汇报 PPT · 手绘插画风',cover:1}
 ];
 const pad=i=>String(i).padStart(2,'0');
-const src=(w,i,s)=>`img/${w.id}-${pad(i)}${s?'-s':''}.webp`;
+const src=(w,i,s)=>`img/${w.id}-${pad(i)}${s?'-s':''}.webp?v=2`;
 const box=document.getElementById('works');
 WORKS.forEach((w,k)=>{
   const el=document.createElement('section');el.className='work';
