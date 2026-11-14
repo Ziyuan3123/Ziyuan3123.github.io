@@ -121,7 +121,7 @@ const WORKS=[
   {id:'coffee',n:18,title:'Mellower Coffee 供应链案例分析',sub:'英文汇报 PPT · 手绘插画风',cover:1}
 ];
 const pad=i=>String(i).padStart(2,'0');
-const src=(w,i,s)=>`img/${w.id}-${pad(i)}${s?'-s':''}.webp?v=2`;
+const src=(w,i,s)=>`img/${w.id}-${pad(i)}${s?'-s':''}.webp?v=3`;
 const box=document.getElementById('works');
 WORKS.forEach((w,k)=>{
   const el=document.createElement('section');el.className='work rv';
